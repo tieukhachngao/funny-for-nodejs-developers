@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Linux tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sqlite3 dnsutils netcat-openbsd gzip coreutils
+
+      - name: Check project structure
+        run: scripts/ci-structure.sh
+
+      - name: Check Go examples
+        run: scripts/ci-go.sh
+
+      - name: Check Node.js examples
+        run: scripts/ci-node.sh
+
+      - name: Check Shell Script examples
+        run: scripts/ci-shell.sh
+
+      - name: Check Batch examples
+        run: scripts/ci-batch.sh
+
+      - name: Check PowerShell examples
+        run: scripts/ci-powershell.sh
+
+  windows-batch:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Smoke test Batch examples
+        shell: cmd
+        run: |
+          call examples\print.bat
+          call examples\functions.bat
+          call examples\arrays.bat
+          call examples\module_export_usage.bat
+          call examples\getter_batch\index.bat bob
+
+      - name: Smoke test PowerShell examples
+        shell: pwsh
+        run: |
+          ./examples/print.ps1
+          ./examples/functions.ps1
+          ./examples/arrays.ps1
+          ./examples/module_export_usage.ps1
+          ./examples/getter_powershell/index.ps1 bob
