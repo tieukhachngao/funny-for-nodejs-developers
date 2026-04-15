@@ -1,31 +1,45 @@
 .section __TEXT,__text,regular,pure_instructions
-.globl _main
+.globl _start
 .p2align 4, 0x90
 
-_main:
-  pushq %rbp
-  movq %rsp, %rbp
+_start:
+  cmpq $2, %rdi
+  jl use_default_name
 
-  cmpl $2, %edi
-  jl default_name
+  movq 8(%rsi), %r13
+  jmp write_greeting
 
-  movq 8(%rsi), %rsi
-  jmp print
+use_default_name:
+  leaq default_name(%rip), %r13
 
-default_name:
-  leaq default(%rip), %rsi
+write_greeting:
+  movq $0x2000004, %rax
+  movq $1, %rdi
+  leaq prefix(%rip), %rsi
+  movq $6, %rdx
+  syscall
 
-print:
-  leaq format(%rip), %rdi
-  xorl %eax, %eax
-  callq _printf
+  xorl %ecx, %ecx
 
-  xorl %eax, %eax
-  popq %rbp
-  retq
+name_len_loop:
+  cmpb $0, (%r13,%rcx)
+  je write_name
+  incq %rcx
+  jmp name_len_loop
+
+write_name:
+  movq $0x2000004, %rax
+  movq $1, %rdi
+  movq %r13, %rsi
+  movq %rcx, %rdx
+  syscall
+
+  movq $0x2000001, %rax
+  xorl %edi, %edi
+  syscall
 
 .section __TEXT,__cstring,cstring_literals
-format:
-  .asciz "hello %s"
-default:
+prefix:
+  .asciz "hello "
+default_name:
   .asciz "bob"

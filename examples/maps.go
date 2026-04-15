@@ -22,7 +22,7 @@ func main() {
 	map2["bar"] = 200
 	map2["baz"] = 300
 
-	for key, value := range map2 {
-		fmt.Println(key, value)
+	for _, key := range []string{"foo", "bar", "baz"} {
+		fmt.Println(key, map2[key])
 	}
 }

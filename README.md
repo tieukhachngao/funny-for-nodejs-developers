@@ -6,20 +6,20 @@
   <br />
 </h3>
 
-# Golang for Node.js, Shell Script, Batch, and PowerShell Developers
+# Golang for Node.js, Shell Script, Batch, PowerShell, and Assembly Developers
 
-> Examples of [Golang](https://golang.org/) examples compared to [Node.js](https://nodejs.org/), Linux shell scripts, Windows Batch, and PowerShell for learning
+> Examples of [Golang](https://golang.org/) examples compared to [Node.js](https://nodejs.org/), Linux shell scripts, Windows Batch, PowerShell, and Assembly for learning
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tieukhachngao/funny-for-nodejs-developers/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
-This guide full of examples is intended for people learning Go that are coming from Node.js, Linux shell scripting, Windows Batch, or PowerShell, although the vice versa can work too. This is not meant to be a complete guide and it is assumed that you've gone through the [Tour of Go](https://tour.golang.org/) tutorial. This guide is meant to be barely good enough to help you at a high level understand how to do *X* in *Y* and doing further learning on your own is of course required.
+This guide full of examples is intended for people learning Go that are coming from Node.js, Linux shell scripting, Windows Batch, PowerShell, or Assembly, although the vice versa can work too. This is not meant to be a complete guide and it is assumed that you've gone through the [Tour of Go](https://tour.golang.org/) tutorial. This guide is meant to be barely good enough to help you at a high level understand how to do *X* in *Y* and doing further learning on your own is of course required.
 
 ## Attribution
 
 This project is built on top of the ideas, structure, and code from [miguelmota/golang-for-nodejs-developers](https://github.com/miguelmota/golang-for-nodejs-developers). The original project is licensed under the MIT License, and this repository keeps that license, preserves the original copyright notice, and clearly credits the upstream work.
 
-The goal of this repository is to inherit that learning resource honestly and extend it further for the community. The current version adds Linux Shell Script, Windows Batch, and PowerShell examples, keeps the Node.js and Go comparison style, updates project paths for this fork, and adds CI checks so the examples stay consistent. Everything remains free to use, copy, modify, and share under the MIT License.
+The goal of this repository is to inherit that learning resource honestly and extend it further for the community. The current version adds Linux Shell Script, Windows Batch, PowerShell, and Assembly examples, keeps the Node.js and Go comparison style, updates project paths for this fork, and adds CI checks so the examples stay consistent. Everything remains free to use, copy, modify, and share under the MIT License.
 
 ## Contents
 
@@ -164,78 +164,78 @@ The goal of this repository is to inherit that learning resource honestly and ex
 
 ## Examples
 
-All sample code is available in [examples/](examples/). Shell Script, Batch, and PowerShell examples use the same basename as the matching Node.js and Go examples, for example `print.js`, `print.go`, `print.sh`, `print.bat`, and `print.ps1`.
+All sample code is available in [examples/](examples/). Shell Script, Batch, PowerShell, and Assembly examples use the same basename as the matching Node.js and Go examples, for example `print.js`, `print.go`, `print.sh`, `print.bat`, `print.ps1`, and `print.s`.
 
 ### Language coverage
 
-Every top-level example has matching Go, Node.js, Shell Script, Batch, and PowerShell files. The detailed guide below keeps the original comparison format, while this table is the full language index for the repository.
+Every top-level example has matching Go, Node.js, Shell Script, Batch, PowerShell, and Assembly files. The detailed guide below keeps the original comparison format, while this table is the full language index for the repository.
 
-| Example | Go | Node.js | Shell Script | Batch | PowerShell |
-| --- | --- | --- | --- | --- | --- |
-| `array iteration` | [array_iteration.go](examples/array_iteration.go) | [array_iteration.js](examples/array_iteration.js) | [array_iteration.sh](examples/array_iteration.sh) | [array_iteration.bat](examples/array_iteration.bat) | [array_iteration.ps1](examples/array_iteration.ps1) |
-| `array sort` | [array_sort.go](examples/array_sort.go) | [array_sort.js](examples/array_sort.js) | [array_sort.sh](examples/array_sort.sh) | [array_sort.bat](examples/array_sort.bat) | [array_sort.ps1](examples/array_sort.ps1) |
-| `arrays` | [arrays.go](examples/arrays.go) | [arrays.js](examples/arrays.js) | [arrays.sh](examples/arrays.sh) | [arrays.bat](examples/arrays.bat) | [arrays.ps1](examples/arrays.ps1) |
-| `async await` | [async_await.go](examples/async_await.go) | [async_await.js](examples/async_await.js) | [async_await.sh](examples/async_await.sh) | [async_await.bat](examples/async_await.bat) | [async_await.ps1](examples/async_await.ps1) |
-| `benchmark test` | [benchmark_test.go](examples/benchmark_test.go) | [benchmark_test.js](examples/benchmark_test.js) | [benchmark_test.sh](examples/benchmark_test.sh) | [benchmark_test.bat](examples/benchmark_test.bat) | [benchmark_test.ps1](examples/benchmark_test.ps1) |
-| `big numbers` | [big_numbers.go](examples/big_numbers.go) | [big_numbers.js](examples/big_numbers.js) | [big_numbers.sh](examples/big_numbers.sh) | [big_numbers.bat](examples/big_numbers.bat) | [big_numbers.ps1](examples/big_numbers.ps1) |
-| `buffers` | [buffers.go](examples/buffers.go) | [buffers.js](examples/buffers.js) | [buffers.sh](examples/buffers.sh) | [buffers.bat](examples/buffers.bat) | [buffers.ps1](examples/buffers.ps1) |
-| `class` | [class.go](examples/class.go) | [class.js](examples/class.js) | [class.sh](examples/class.sh) | [class.bat](examples/class.bat) | [class.ps1](examples/class.ps1) |
-| `cli args` | [cli_args.go](examples/cli_args.go) | [cli_args.js](examples/cli_args.js) | [cli_args.sh](examples/cli_args.sh) | [cli_args.bat](examples/cli_args.bat) | [cli_args.ps1](examples/cli_args.ps1) |
-| `cli flags` | [cli_flags.go](examples/cli_flags.go) | [cli_flags.js](examples/cli_flags.js) | [cli_flags.sh](examples/cli_flags.sh) | [cli_flags.bat](examples/cli_flags.bat) | [cli_flags.ps1](examples/cli_flags.ps1) |
-| `comments` | [comments.go](examples/comments.go) | [comments.js](examples/comments.js) | [comments.sh](examples/comments.sh) | [comments.bat](examples/comments.bat) | [comments.ps1](examples/comments.ps1) |
-| `crypto` | [crypto.go](examples/crypto.go) | [crypto.js](examples/crypto.js) | [crypto.sh](examples/crypto.sh) | [crypto.bat](examples/crypto.bat) | [crypto.ps1](examples/crypto.ps1) |
-| `datetime` | [datetime.go](examples/datetime.go) | [datetime.js](examples/datetime.js) | [datetime.sh](examples/datetime.sh) | [datetime.bat](examples/datetime.bat) | [datetime.ps1](examples/datetime.ps1) |
-| `db sqlite3` | [db_sqlite3.go](examples/db_sqlite3.go) | [db_sqlite3.js](examples/db_sqlite3.js) | [db_sqlite3.sh](examples/db_sqlite3.sh) | [db_sqlite3.bat](examples/db_sqlite3.bat) | [db_sqlite3.ps1](examples/db_sqlite3.ps1) |
-| `default values` | [default_values.go](examples/default_values.go) | [default_values.js](examples/default_values.js) | [default_values.sh](examples/default_values.sh) | [default_values.bat](examples/default_values.bat) | [default_values.ps1](examples/default_values.ps1) |
-| `destructuring` | [destructuring.go](examples/destructuring.go) | [destructuring.js](examples/destructuring.js) | [destructuring.sh](examples/destructuring.sh) | [destructuring.bat](examples/destructuring.bat) | [destructuring.ps1](examples/destructuring.ps1) |
-| `dns` | [dns.go](examples/dns.go) | [dns.js](examples/dns.js) | [dns.sh](examples/dns.sh) | [dns.bat](examples/dns.bat) | [dns.ps1](examples/dns.ps1) |
-| `documentation` | [documentation.go](examples/documentation.go) | [documentation.js](examples/documentation.js) | [documentation.sh](examples/documentation.sh) | [documentation.bat](examples/documentation.bat) | [documentation.ps1](examples/documentation.ps1) |
-| `env vars` | [env_vars.go](examples/env_vars.go) | [env_vars.js](examples/env_vars.js) | [env_vars.sh](examples/env_vars.sh) | [env_vars.bat](examples/env_vars.bat) | [env_vars.ps1](examples/env_vars.ps1) |
-| `errors` | [errors.go](examples/errors.go) | [errors.js](examples/errors.js) | [errors.sh](examples/errors.sh) | [errors.bat](examples/errors.bat) | [errors.ps1](examples/errors.ps1) |
-| `event emitter` | [event_emitter.go](examples/event_emitter.go) | [event_emitter.js](examples/event_emitter.js) | [event_emitter.sh](examples/event_emitter.sh) | [event_emitter.bat](examples/event_emitter.bat) | [event_emitter.ps1](examples/event_emitter.ps1) |
-| `example test` | [example_test.go](examples/example_test.go) | [example_test.js](examples/example_test.js) | [example_test.sh](examples/example_test.sh) | [example_test.bat](examples/example_test.bat) | [example_test.ps1](examples/example_test.ps1) |
-| `exceptions` | [exceptions.go](examples/exceptions.go) | [exceptions.js](examples/exceptions.js) | [exceptions.sh](examples/exceptions.sh) | [exceptions.bat](examples/exceptions.bat) | [exceptions.ps1](examples/exceptions.ps1) |
-| `exec` | [exec.go](examples/exec.go) | [exec.js](examples/exec.js) | [exec.sh](examples/exec.sh) | [exec.bat](examples/exec.bat) | [exec.ps1](examples/exec.ps1) |
-| `exec sync` | [exec_sync.go](examples/exec_sync.go) | [exec_sync.js](examples/exec_sync.js) | [exec_sync.sh](examples/exec_sync.sh) | [exec_sync.bat](examples/exec_sync.bat) | [exec_sync.ps1](examples/exec_sync.ps1) |
-| `files` | [files.go](examples/files.go) | [files.js](examples/files.js) | [files.sh](examples/files.sh) | [files.bat](examples/files.bat) | [files.ps1](examples/files.ps1) |
-| `for loop` | [for_loop.go](examples/for_loop.go) | [for_loop.js](examples/for_loop.js) | [for_loop.sh](examples/for_loop.sh) | [for_loop.bat](examples/for_loop.bat) | [for_loop.ps1](examples/for_loop.ps1) |
-| `functions` | [functions.go](examples/functions.go) | [functions.js](examples/functions.js) | [functions.sh](examples/functions.sh) | [functions.bat](examples/functions.bat) | [functions.ps1](examples/functions.ps1) |
-| `generators` | [generators.go](examples/generators.go) | [generators.js](examples/generators.js) | [generators.sh](examples/generators.sh) | [generators.bat](examples/generators.bat) | [generators.ps1](examples/generators.ps1) |
-| `gzip` | [gzip.go](examples/gzip.go) | [gzip.js](examples/gzip.js) | [gzip.sh](examples/gzip.sh) | [gzip.bat](examples/gzip.bat) | [gzip.ps1](examples/gzip.ps1) |
-| `http server` | [http_server.go](examples/http_server.go) | [http_server.js](examples/http_server.js) | [http_server.sh](examples/http_server.sh) | [http_server.bat](examples/http_server.bat) | [http_server.ps1](examples/http_server.ps1) |
-| `ifelse` | [ifelse.go](examples/ifelse.go) | [ifelse.js](examples/ifelse.js) | [ifelse.sh](examples/ifelse.sh) | [ifelse.bat](examples/ifelse.bat) | [ifelse.ps1](examples/ifelse.ps1) |
-| `iife` | [iife.go](examples/iife.go) | [iife.js](examples/iife.js) | [iife.sh](examples/iife.sh) | [iife.bat](examples/iife.bat) | [iife.ps1](examples/iife.ps1) |
-| `interpolation` | [interpolation.go](examples/interpolation.go) | [interpolation.js](examples/interpolation.js) | [interpolation.sh](examples/interpolation.sh) | [interpolation.bat](examples/interpolation.bat) | [interpolation.ps1](examples/interpolation.ps1) |
-| `interval` | [interval.go](examples/interval.go) | [interval.js](examples/interval.js) | [interval.sh](examples/interval.sh) | [interval.bat](examples/interval.bat) | [interval.ps1](examples/interval.ps1) |
-| `json` | [json.go](examples/json.go) | [json.js](examples/json.js) | [json.sh](examples/json.sh) | [json.bat](examples/json.bat) | [json.ps1](examples/json.ps1) |
-| `logging` | [logging.go](examples/logging.go) | [logging.js](examples/logging.js) | [logging.sh](examples/logging.sh) | [logging.bat](examples/logging.bat) | [logging.ps1](examples/logging.ps1) |
-| `maps` | [maps.go](examples/maps.go) | [maps.js](examples/maps.js) | [maps.sh](examples/maps.sh) | [maps.bat](examples/maps.bat) | [maps.ps1](examples/maps.ps1) |
-| `module export` | [module_export.go](examples/module_export.go) | [module_export.js](examples/module_export.js) | [module_export.sh](examples/module_export.sh) | [module_export.bat](examples/module_export.bat) | [module_export.ps1](examples/module_export.ps1) |
-| `module export usage` | [module_export_usage.go](examples/module_export_usage.go) | [module_export_usage.js](examples/module_export_usage.js) | [module_export_usage.sh](examples/module_export_usage.sh) | [module_export_usage.bat](examples/module_export_usage.bat) | [module_export_usage.ps1](examples/module_export_usage.ps1) |
-| `module import` | [module_import.go](examples/module_import.go) | [module_import.js](examples/module_import.js) | [module_import.sh](examples/module_import.sh) | [module_import.bat](examples/module_import.bat) | [module_import.ps1](examples/module_import.ps1) |
-| `objects` | [objects.go](examples/objects.go) | [objects.js](examples/objects.js) | [objects.sh](examples/objects.sh) | [objects.bat](examples/objects.bat) | [objects.ps1](examples/objects.ps1) |
-| `print` | [print.go](examples/print.go) | [print.js](examples/print.js) | [print.sh](examples/print.sh) | [print.bat](examples/print.bat) | [print.ps1](examples/print.ps1) |
-| `promises` | [promises.go](examples/promises.go) | [promises.js](examples/promises.js) | [promises.sh](examples/promises.sh) | [promises.bat](examples/promises.bat) | [promises.ps1](examples/promises.ps1) |
-| `regex` | [regex.go](examples/regex.go) | [regex.js](examples/regex.js) | [regex.sh](examples/regex.sh) | [regex.bat](examples/regex.bat) | [regex.ps1](examples/regex.ps1) |
-| `rest` | [rest.go](examples/rest.go) | [rest.js](examples/rest.js) | [rest.sh](examples/rest.sh) | [rest.bat](examples/rest.bat) | [rest.ps1](examples/rest.ps1) |
-| `spread` | [spread.go](examples/spread.go) | [spread.js](examples/spread.js) | [spread.sh](examples/spread.sh) | [spread.bat](examples/spread.bat) | [spread.ps1](examples/spread.ps1) |
-| `stack trace` | [stack_trace.go](examples/stack_trace.go) | [stack_trace.js](examples/stack_trace.js) | [stack_trace.sh](examples/stack_trace.sh) | [stack_trace.bat](examples/stack_trace.bat) | [stack_trace.ps1](examples/stack_trace.ps1) |
-| `stderr` | [stderr.go](examples/stderr.go) | [stderr.js](examples/stderr.js) | [stderr.sh](examples/stderr.sh) | [stderr.bat](examples/stderr.bat) | [stderr.ps1](examples/stderr.ps1) |
-| `stdin` | [stdin.go](examples/stdin.go) | [stdin.js](examples/stdin.js) | [stdin.sh](examples/stdin.sh) | [stdin.bat](examples/stdin.bat) | [stdin.ps1](examples/stdin.ps1) |
-| `stdout` | [stdout.go](examples/stdout.go) | [stdout.js](examples/stdout.js) | [stdout.sh](examples/stdout.sh) | [stdout.bat](examples/stdout.bat) | [stdout.ps1](examples/stdout.ps1) |
-| `streams` | [streams.go](examples/streams.go) | [streams.js](examples/streams.js) | [streams.sh](examples/streams.sh) | [streams.bat](examples/streams.bat) | [streams.ps1](examples/streams.ps1) |
-| `swapping` | [swapping.go](examples/swapping.go) | [swapping.js](examples/swapping.js) | [swapping.sh](examples/swapping.sh) | [swapping.bat](examples/swapping.bat) | [swapping.ps1](examples/swapping.ps1) |
-| `switch` | [switch.go](examples/switch.go) | [switch.js](examples/switch.js) | [switch.sh](examples/switch.sh) | [switch.bat](examples/switch.bat) | [switch.ps1](examples/switch.ps1) |
-| `tcp server` | [tcp_server.go](examples/tcp_server.go) | [tcp_server.js](examples/tcp_server.js) | [tcp_server.sh](examples/tcp_server.sh) | [tcp_server.bat](examples/tcp_server.bat) | [tcp_server.ps1](examples/tcp_server.ps1) |
-| `timeout` | [timeout.go](examples/timeout.go) | [timeout.js](examples/timeout.js) | [timeout.sh](examples/timeout.sh) | [timeout.bat](examples/timeout.bat) | [timeout.ps1](examples/timeout.ps1) |
-| `try catch` | [try_catch.go](examples/try_catch.go) | [try_catch.js](examples/try_catch.js) | [try_catch.sh](examples/try_catch.sh) | [try_catch.bat](examples/try_catch.bat) | [try_catch.ps1](examples/try_catch.ps1) |
-| `type check` | [type_check.go](examples/type_check.go) | [type_check.js](examples/type_check.js) | [type_check.sh](examples/type_check.sh) | [type_check.bat](examples/type_check.bat) | [type_check.ps1](examples/type_check.ps1) |
-| `types` | [types.go](examples/types.go) | [types.js](examples/types.js) | [types.sh](examples/types.sh) | [types.bat](examples/types.bat) | [types.ps1](examples/types.ps1) |
-| `udp server` | [udp_server.go](examples/udp_server.go) | [udp_server.js](examples/udp_server.js) | [udp_server.sh](examples/udp_server.sh) | [udp_server.bat](examples/udp_server.bat) | [udp_server.ps1](examples/udp_server.ps1) |
-| `uint8 arrays` | [uint8_arrays.go](examples/uint8_arrays.go) | [uint8_arrays.js](examples/uint8_arrays.js) | [uint8_arrays.sh](examples/uint8_arrays.sh) | [uint8_arrays.bat](examples/uint8_arrays.bat) | [uint8_arrays.ps1](examples/uint8_arrays.ps1) |
-| `url parse` | [url_parse.go](examples/url_parse.go) | [url_parse.js](examples/url_parse.js) | [url_parse.sh](examples/url_parse.sh) | [url_parse.bat](examples/url_parse.bat) | [url_parse.ps1](examples/url_parse.ps1) |
-| `variables` | [variables.go](examples/variables.go) | [variables.js](examples/variables.js) | [variables.sh](examples/variables.sh) | [variables.bat](examples/variables.bat) | [variables.ps1](examples/variables.ps1) |
-| `while loop` | [while_loop.go](examples/while_loop.go) | [while_loop.js](examples/while_loop.js) | [while_loop.sh](examples/while_loop.sh) | [while_loop.bat](examples/while_loop.bat) | [while_loop.ps1](examples/while_loop.ps1) |
+| Example | Go | Node.js | Shell Script | Batch | PowerShell | Assembly |
+| --- | --- | --- | --- | --- | --- | --- |
+| `array iteration` | [array_iteration.go](examples/array_iteration.go) | [array_iteration.js](examples/array_iteration.js) | [array_iteration.sh](examples/array_iteration.sh) | [array_iteration.bat](examples/array_iteration.bat) | [array_iteration.ps1](examples/array_iteration.ps1) | [array_iteration.s](examples/array_iteration.s) |
+| `array sort` | [array_sort.go](examples/array_sort.go) | [array_sort.js](examples/array_sort.js) | [array_sort.sh](examples/array_sort.sh) | [array_sort.bat](examples/array_sort.bat) | [array_sort.ps1](examples/array_sort.ps1) | [array_sort.s](examples/array_sort.s) |
+| `arrays` | [arrays.go](examples/arrays.go) | [arrays.js](examples/arrays.js) | [arrays.sh](examples/arrays.sh) | [arrays.bat](examples/arrays.bat) | [arrays.ps1](examples/arrays.ps1) | [arrays.s](examples/arrays.s) |
+| `async await` | [async_await.go](examples/async_await.go) | [async_await.js](examples/async_await.js) | [async_await.sh](examples/async_await.sh) | [async_await.bat](examples/async_await.bat) | [async_await.ps1](examples/async_await.ps1) | [async_await.s](examples/async_await.s) |
+| `benchmark test` | [benchmark_test.go](examples/benchmark_test.go) | [benchmark_test.js](examples/benchmark_test.js) | [benchmark_test.sh](examples/benchmark_test.sh) | [benchmark_test.bat](examples/benchmark_test.bat) | [benchmark_test.ps1](examples/benchmark_test.ps1) | [benchmark_test.s](examples/benchmark_test.s) |
+| `big numbers` | [big_numbers.go](examples/big_numbers.go) | [big_numbers.js](examples/big_numbers.js) | [big_numbers.sh](examples/big_numbers.sh) | [big_numbers.bat](examples/big_numbers.bat) | [big_numbers.ps1](examples/big_numbers.ps1) | [big_numbers.s](examples/big_numbers.s) |
+| `buffers` | [buffers.go](examples/buffers.go) | [buffers.js](examples/buffers.js) | [buffers.sh](examples/buffers.sh) | [buffers.bat](examples/buffers.bat) | [buffers.ps1](examples/buffers.ps1) | [buffers.s](examples/buffers.s) |
+| `class` | [class.go](examples/class.go) | [class.js](examples/class.js) | [class.sh](examples/class.sh) | [class.bat](examples/class.bat) | [class.ps1](examples/class.ps1) | [class.s](examples/class.s) |
+| `cli args` | [cli_args.go](examples/cli_args.go) | [cli_args.js](examples/cli_args.js) | [cli_args.sh](examples/cli_args.sh) | [cli_args.bat](examples/cli_args.bat) | [cli_args.ps1](examples/cli_args.ps1) | [cli_args.s](examples/cli_args.s) |
+| `cli flags` | [cli_flags.go](examples/cli_flags.go) | [cli_flags.js](examples/cli_flags.js) | [cli_flags.sh](examples/cli_flags.sh) | [cli_flags.bat](examples/cli_flags.bat) | [cli_flags.ps1](examples/cli_flags.ps1) | [cli_flags.s](examples/cli_flags.s) |
+| `comments` | [comments.go](examples/comments.go) | [comments.js](examples/comments.js) | [comments.sh](examples/comments.sh) | [comments.bat](examples/comments.bat) | [comments.ps1](examples/comments.ps1) | [comments.s](examples/comments.s) |
+| `crypto` | [crypto.go](examples/crypto.go) | [crypto.js](examples/crypto.js) | [crypto.sh](examples/crypto.sh) | [crypto.bat](examples/crypto.bat) | [crypto.ps1](examples/crypto.ps1) | [crypto.s](examples/crypto.s) |
+| `datetime` | [datetime.go](examples/datetime.go) | [datetime.js](examples/datetime.js) | [datetime.sh](examples/datetime.sh) | [datetime.bat](examples/datetime.bat) | [datetime.ps1](examples/datetime.ps1) | [datetime.s](examples/datetime.s) |
+| `db sqlite3` | [db_sqlite3.go](examples/db_sqlite3.go) | [db_sqlite3.js](examples/db_sqlite3.js) | [db_sqlite3.sh](examples/db_sqlite3.sh) | [db_sqlite3.bat](examples/db_sqlite3.bat) | [db_sqlite3.ps1](examples/db_sqlite3.ps1) | [db_sqlite3.s](examples/db_sqlite3.s) |
+| `default values` | [default_values.go](examples/default_values.go) | [default_values.js](examples/default_values.js) | [default_values.sh](examples/default_values.sh) | [default_values.bat](examples/default_values.bat) | [default_values.ps1](examples/default_values.ps1) | [default_values.s](examples/default_values.s) |
+| `destructuring` | [destructuring.go](examples/destructuring.go) | [destructuring.js](examples/destructuring.js) | [destructuring.sh](examples/destructuring.sh) | [destructuring.bat](examples/destructuring.bat) | [destructuring.ps1](examples/destructuring.ps1) | [destructuring.s](examples/destructuring.s) |
+| `dns` | [dns.go](examples/dns.go) | [dns.js](examples/dns.js) | [dns.sh](examples/dns.sh) | [dns.bat](examples/dns.bat) | [dns.ps1](examples/dns.ps1) | [dns.s](examples/dns.s) |
+| `documentation` | [documentation.go](examples/documentation.go) | [documentation.js](examples/documentation.js) | [documentation.sh](examples/documentation.sh) | [documentation.bat](examples/documentation.bat) | [documentation.ps1](examples/documentation.ps1) | [documentation.s](examples/documentation.s) |
+| `env vars` | [env_vars.go](examples/env_vars.go) | [env_vars.js](examples/env_vars.js) | [env_vars.sh](examples/env_vars.sh) | [env_vars.bat](examples/env_vars.bat) | [env_vars.ps1](examples/env_vars.ps1) | [env_vars.s](examples/env_vars.s) |
+| `errors` | [errors.go](examples/errors.go) | [errors.js](examples/errors.js) | [errors.sh](examples/errors.sh) | [errors.bat](examples/errors.bat) | [errors.ps1](examples/errors.ps1) | [errors.s](examples/errors.s) |
+| `event emitter` | [event_emitter.go](examples/event_emitter.go) | [event_emitter.js](examples/event_emitter.js) | [event_emitter.sh](examples/event_emitter.sh) | [event_emitter.bat](examples/event_emitter.bat) | [event_emitter.ps1](examples/event_emitter.ps1) | [event_emitter.s](examples/event_emitter.s) |
+| `example test` | [example_test.go](examples/example_test.go) | [example_test.js](examples/example_test.js) | [example_test.sh](examples/example_test.sh) | [example_test.bat](examples/example_test.bat) | [example_test.ps1](examples/example_test.ps1) | [example_test.s](examples/example_test.s) |
+| `exceptions` | [exceptions.go](examples/exceptions.go) | [exceptions.js](examples/exceptions.js) | [exceptions.sh](examples/exceptions.sh) | [exceptions.bat](examples/exceptions.bat) | [exceptions.ps1](examples/exceptions.ps1) | [exceptions.s](examples/exceptions.s) |
+| `exec` | [exec.go](examples/exec.go) | [exec.js](examples/exec.js) | [exec.sh](examples/exec.sh) | [exec.bat](examples/exec.bat) | [exec.ps1](examples/exec.ps1) | [exec.s](examples/exec.s) |
+| `exec sync` | [exec_sync.go](examples/exec_sync.go) | [exec_sync.js](examples/exec_sync.js) | [exec_sync.sh](examples/exec_sync.sh) | [exec_sync.bat](examples/exec_sync.bat) | [exec_sync.ps1](examples/exec_sync.ps1) | [exec_sync.s](examples/exec_sync.s) |
+| `files` | [files.go](examples/files.go) | [files.js](examples/files.js) | [files.sh](examples/files.sh) | [files.bat](examples/files.bat) | [files.ps1](examples/files.ps1) | [files.s](examples/files.s) |
+| `for loop` | [for_loop.go](examples/for_loop.go) | [for_loop.js](examples/for_loop.js) | [for_loop.sh](examples/for_loop.sh) | [for_loop.bat](examples/for_loop.bat) | [for_loop.ps1](examples/for_loop.ps1) | [for_loop.s](examples/for_loop.s) |
+| `functions` | [functions.go](examples/functions.go) | [functions.js](examples/functions.js) | [functions.sh](examples/functions.sh) | [functions.bat](examples/functions.bat) | [functions.ps1](examples/functions.ps1) | [functions.s](examples/functions.s) |
+| `generators` | [generators.go](examples/generators.go) | [generators.js](examples/generators.js) | [generators.sh](examples/generators.sh) | [generators.bat](examples/generators.bat) | [generators.ps1](examples/generators.ps1) | [generators.s](examples/generators.s) |
+| `gzip` | [gzip.go](examples/gzip.go) | [gzip.js](examples/gzip.js) | [gzip.sh](examples/gzip.sh) | [gzip.bat](examples/gzip.bat) | [gzip.ps1](examples/gzip.ps1) | [gzip.s](examples/gzip.s) |
+| `http server` | [http_server.go](examples/http_server.go) | [http_server.js](examples/http_server.js) | [http_server.sh](examples/http_server.sh) | [http_server.bat](examples/http_server.bat) | [http_server.ps1](examples/http_server.ps1) | [http_server.s](examples/http_server.s) |
+| `ifelse` | [ifelse.go](examples/ifelse.go) | [ifelse.js](examples/ifelse.js) | [ifelse.sh](examples/ifelse.sh) | [ifelse.bat](examples/ifelse.bat) | [ifelse.ps1](examples/ifelse.ps1) | [ifelse.s](examples/ifelse.s) |
+| `iife` | [iife.go](examples/iife.go) | [iife.js](examples/iife.js) | [iife.sh](examples/iife.sh) | [iife.bat](examples/iife.bat) | [iife.ps1](examples/iife.ps1) | [iife.s](examples/iife.s) |
+| `interpolation` | [interpolation.go](examples/interpolation.go) | [interpolation.js](examples/interpolation.js) | [interpolation.sh](examples/interpolation.sh) | [interpolation.bat](examples/interpolation.bat) | [interpolation.ps1](examples/interpolation.ps1) | [interpolation.s](examples/interpolation.s) |
+| `interval` | [interval.go](examples/interval.go) | [interval.js](examples/interval.js) | [interval.sh](examples/interval.sh) | [interval.bat](examples/interval.bat) | [interval.ps1](examples/interval.ps1) | [interval.s](examples/interval.s) |
+| `json` | [json.go](examples/json.go) | [json.js](examples/json.js) | [json.sh](examples/json.sh) | [json.bat](examples/json.bat) | [json.ps1](examples/json.ps1) | [json.s](examples/json.s) |
+| `logging` | [logging.go](examples/logging.go) | [logging.js](examples/logging.js) | [logging.sh](examples/logging.sh) | [logging.bat](examples/logging.bat) | [logging.ps1](examples/logging.ps1) | [logging.s](examples/logging.s) |
+| `maps` | [maps.go](examples/maps.go) | [maps.js](examples/maps.js) | [maps.sh](examples/maps.sh) | [maps.bat](examples/maps.bat) | [maps.ps1](examples/maps.ps1) | [maps.s](examples/maps.s) |
+| `module export` | [module_export.go](examples/module_export.go) | [module_export.js](examples/module_export.js) | [module_export.sh](examples/module_export.sh) | [module_export.bat](examples/module_export.bat) | [module_export.ps1](examples/module_export.ps1) | [module_export.s](examples/module_export.s) |
+| `module export usage` | [module_export_usage.go](examples/module_export_usage.go) | [module_export_usage.js](examples/module_export_usage.js) | [module_export_usage.sh](examples/module_export_usage.sh) | [module_export_usage.bat](examples/module_export_usage.bat) | [module_export_usage.ps1](examples/module_export_usage.ps1) | [module_export_usage.s](examples/module_export_usage.s) |
+| `module import` | [module_import.go](examples/module_import.go) | [module_import.js](examples/module_import.js) | [module_import.sh](examples/module_import.sh) | [module_import.bat](examples/module_import.bat) | [module_import.ps1](examples/module_import.ps1) | [module_import.s](examples/module_import.s) |
+| `objects` | [objects.go](examples/objects.go) | [objects.js](examples/objects.js) | [objects.sh](examples/objects.sh) | [objects.bat](examples/objects.bat) | [objects.ps1](examples/objects.ps1) | [objects.s](examples/objects.s) |
+| `print` | [print.go](examples/print.go) | [print.js](examples/print.js) | [print.sh](examples/print.sh) | [print.bat](examples/print.bat) | [print.ps1](examples/print.ps1) | [print.s](examples/print.s) |
+| `promises` | [promises.go](examples/promises.go) | [promises.js](examples/promises.js) | [promises.sh](examples/promises.sh) | [promises.bat](examples/promises.bat) | [promises.ps1](examples/promises.ps1) | [promises.s](examples/promises.s) |
+| `regex` | [regex.go](examples/regex.go) | [regex.js](examples/regex.js) | [regex.sh](examples/regex.sh) | [regex.bat](examples/regex.bat) | [regex.ps1](examples/regex.ps1) | [regex.s](examples/regex.s) |
+| `rest` | [rest.go](examples/rest.go) | [rest.js](examples/rest.js) | [rest.sh](examples/rest.sh) | [rest.bat](examples/rest.bat) | [rest.ps1](examples/rest.ps1) | [rest.s](examples/rest.s) |
+| `spread` | [spread.go](examples/spread.go) | [spread.js](examples/spread.js) | [spread.sh](examples/spread.sh) | [spread.bat](examples/spread.bat) | [spread.ps1](examples/spread.ps1) | [spread.s](examples/spread.s) |
+| `stack trace` | [stack_trace.go](examples/stack_trace.go) | [stack_trace.js](examples/stack_trace.js) | [stack_trace.sh](examples/stack_trace.sh) | [stack_trace.bat](examples/stack_trace.bat) | [stack_trace.ps1](examples/stack_trace.ps1) | [stack_trace.s](examples/stack_trace.s) |
+| `stderr` | [stderr.go](examples/stderr.go) | [stderr.js](examples/stderr.js) | [stderr.sh](examples/stderr.sh) | [stderr.bat](examples/stderr.bat) | [stderr.ps1](examples/stderr.ps1) | [stderr.s](examples/stderr.s) |
+| `stdin` | [stdin.go](examples/stdin.go) | [stdin.js](examples/stdin.js) | [stdin.sh](examples/stdin.sh) | [stdin.bat](examples/stdin.bat) | [stdin.ps1](examples/stdin.ps1) | [stdin.s](examples/stdin.s) |
+| `stdout` | [stdout.go](examples/stdout.go) | [stdout.js](examples/stdout.js) | [stdout.sh](examples/stdout.sh) | [stdout.bat](examples/stdout.bat) | [stdout.ps1](examples/stdout.ps1) | [stdout.s](examples/stdout.s) |
+| `streams` | [streams.go](examples/streams.go) | [streams.js](examples/streams.js) | [streams.sh](examples/streams.sh) | [streams.bat](examples/streams.bat) | [streams.ps1](examples/streams.ps1) | [streams.s](examples/streams.s) |
+| `swapping` | [swapping.go](examples/swapping.go) | [swapping.js](examples/swapping.js) | [swapping.sh](examples/swapping.sh) | [swapping.bat](examples/swapping.bat) | [swapping.ps1](examples/swapping.ps1) | [swapping.s](examples/swapping.s) |
+| `switch` | [switch.go](examples/switch.go) | [switch.js](examples/switch.js) | [switch.sh](examples/switch.sh) | [switch.bat](examples/switch.bat) | [switch.ps1](examples/switch.ps1) | [switch.s](examples/switch.s) |
+| `tcp server` | [tcp_server.go](examples/tcp_server.go) | [tcp_server.js](examples/tcp_server.js) | [tcp_server.sh](examples/tcp_server.sh) | [tcp_server.bat](examples/tcp_server.bat) | [tcp_server.ps1](examples/tcp_server.ps1) | [tcp_server.s](examples/tcp_server.s) |
+| `timeout` | [timeout.go](examples/timeout.go) | [timeout.js](examples/timeout.js) | [timeout.sh](examples/timeout.sh) | [timeout.bat](examples/timeout.bat) | [timeout.ps1](examples/timeout.ps1) | [timeout.s](examples/timeout.s) |
+| `try catch` | [try_catch.go](examples/try_catch.go) | [try_catch.js](examples/try_catch.js) | [try_catch.sh](examples/try_catch.sh) | [try_catch.bat](examples/try_catch.bat) | [try_catch.ps1](examples/try_catch.ps1) | [try_catch.s](examples/try_catch.s) |
+| `type check` | [type_check.go](examples/type_check.go) | [type_check.js](examples/type_check.js) | [type_check.sh](examples/type_check.sh) | [type_check.bat](examples/type_check.bat) | [type_check.ps1](examples/type_check.ps1) | [type_check.s](examples/type_check.s) |
+| `types` | [types.go](examples/types.go) | [types.js](examples/types.js) | [types.sh](examples/types.sh) | [types.bat](examples/types.bat) | [types.ps1](examples/types.ps1) | [types.s](examples/types.s) |
+| `udp server` | [udp_server.go](examples/udp_server.go) | [udp_server.js](examples/udp_server.js) | [udp_server.sh](examples/udp_server.sh) | [udp_server.bat](examples/udp_server.bat) | [udp_server.ps1](examples/udp_server.ps1) | [udp_server.s](examples/udp_server.s) |
+| `uint8 arrays` | [uint8_arrays.go](examples/uint8_arrays.go) | [uint8_arrays.js](examples/uint8_arrays.js) | [uint8_arrays.sh](examples/uint8_arrays.sh) | [uint8_arrays.bat](examples/uint8_arrays.bat) | [uint8_arrays.ps1](examples/uint8_arrays.ps1) | [uint8_arrays.s](examples/uint8_arrays.s) |
+| `url parse` | [url_parse.go](examples/url_parse.go) | [url_parse.js](examples/url_parse.js) | [url_parse.sh](examples/url_parse.sh) | [url_parse.bat](examples/url_parse.bat) | [url_parse.ps1](examples/url_parse.ps1) | [url_parse.s](examples/url_parse.s) |
+| `variables` | [variables.go](examples/variables.go) | [variables.js](examples/variables.js) | [variables.sh](examples/variables.sh) | [variables.bat](examples/variables.bat) | [variables.ps1](examples/variables.ps1) | [variables.s](examples/variables.s) |
+| `while loop` | [while_loop.go](examples/while_loop.go) | [while_loop.js](examples/while_loop.js) | [while_loop.sh](examples/while_loop.sh) | [while_loop.bat](examples/while_loop.bat) | [while_loop.ps1](examples/while_loop.ps1) | [while_loop.s](examples/while_loop.s) |
 
 ### Helper modules
 

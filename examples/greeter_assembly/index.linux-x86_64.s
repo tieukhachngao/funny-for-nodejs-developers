@@ -1,31 +1,46 @@
 .section .text
-.globl main
-.type main, @function
+.globl _start
+.type _start, @function
 
-main:
-  pushq %rbp
-  movq %rsp, %rbp
+_start:
+  movq (%rsp), %r12
+  cmpq $2, %r12
+  jl use_default_name
 
-  cmpl $2, %edi
-  jl default_name
+  movq 16(%rsp), %r13
+  jmp write_greeting
 
-  movq 8(%rsi), %rsi
-  jmp print
+use_default_name:
+  leaq default_name(%rip), %r13
 
-default_name:
-  leaq default(%rip), %rsi
+write_greeting:
+  movq $1, %rax
+  movq $1, %rdi
+  leaq prefix(%rip), %rsi
+  movq $6, %rdx
+  syscall
 
-print:
-  leaq format(%rip), %rdi
-  xorl %eax, %eax
-  call printf@PLT
+  xorl %ecx, %ecx
 
-  xorl %eax, %eax
-  popq %rbp
-  retq
+name_len_loop:
+  cmpb $0, (%r13,%rcx)
+  je write_name
+  incq %rcx
+  jmp name_len_loop
+
+write_name:
+  movq $1, %rax
+  movq $1, %rdi
+  movq %r13, %rsi
+  movq %rcx, %rdx
+  syscall
+
+  movq $60, %rax
+  xorl %edi, %edi
+  syscall
 
 .section .rodata
-format:
-  .asciz "hello %s"
-default:
+prefix:
+  .asciz "hello "
+default_name:
   .asciz "bob"

@@ -19,13 +19,33 @@ case "$os/$arch" in
     ;;
 esac
 
-if ! command -v clang >/dev/null 2>&1; then
-  printf 'clang is required to build the assembly greeter\n' >&2
+if ! command -v as >/dev/null 2>&1; then
+  printf 'as is required to assemble the assembly greeter\n' >&2
+  exit 1
+fi
+
+if ! command -v ld >/dev/null 2>&1; then
+  printf 'ld is required to link the assembly greeter\n' >&2
   exit 1
 fi
 
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-clang "$source_file" -o "$tmpdir/greeter_assembly"
+object_file="$tmpdir/greeter_assembly.o"
+binary_file="$tmpdir/greeter_assembly"
+
+case "$os/$arch" in
+  darwin/x86_64)
+    as -arch x86_64 "$source_file" -o "$object_file"
+    sdk_path=$(xcrun --show-sdk-path)
+    macos_version=$(sw_vers -productVersion | awk -F. '{print $1 "." $2}')
+    ld -e _start -macos_version_min "$macos_version" -syslibroot "$sdk_path" -lSystem "$object_file" -o "$binary_file"
+    ;;
+  linux/x86_64)
+    as "$source_file" -o "$object_file"
+    ld -e _start "$object_file" -o "$binary_file"
+    ;;
+esac
+
 "$tmpdir/greeter_assembly" "$name"
