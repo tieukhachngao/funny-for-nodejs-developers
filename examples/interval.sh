@@ -12,5 +12,5 @@ while true; do
   if (( i == 3 )); then
     break
   fi
-  ((i++))
+  i=$((i + 1))
 done

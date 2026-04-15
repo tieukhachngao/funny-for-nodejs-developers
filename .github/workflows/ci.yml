@@ -1,59 +1,61 @@
-name: CI
+name: Quality Gates
 
 on:
   push:
   pull_request:
 
 jobs:
-  test:
+  ubuntu-validation:
+    name: Ubuntu validation
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Go
+      - name: Setup Go toolchain
         uses: actions/setup-go@v5
         with:
           go-version: '1.22'
           cache: true
 
-      - name: Setup Node.js
+      - name: Setup Node.js runtime
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install Linux tools
+      - name: Install Linux command-line dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y sqlite3 dnsutils netcat-openbsd gzip coreutils
 
-      - name: Check project structure
+      - name: Validate example matrix
         run: scripts/ci-structure.sh
 
-      - name: Check Go examples
+      - name: Validate Go examples
         run: scripts/ci-go.sh
 
-      - name: Check Node.js examples
+      - name: Validate Node.js examples
         run: scripts/ci-node.sh
 
-      - name: Check Shell Script examples
+      - name: Validate Shell Script examples
         run: scripts/ci-shell.sh
 
-      - name: Check Batch examples
+      - name: Validate Batch examples
         run: scripts/ci-batch.sh
 
-      - name: Check PowerShell examples
+      - name: Validate PowerShell examples
         run: scripts/ci-powershell.sh
 
-  windows-batch:
+  windows-native-validation:
+    name: Windows native smoke tests
     runs-on: windows-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Smoke test Batch examples
+      - name: Run Batch smoke tests
         shell: cmd
         run: |
           call examples\print.bat
@@ -62,7 +64,7 @@ jobs:
           call examples\module_export_usage.bat
           call examples\getter_batch\index.bat bob
 
-      - name: Smoke test PowerShell examples
+      - name: Run PowerShell smoke tests
         shell: pwsh
         run: |
           ./examples/print.ps1
