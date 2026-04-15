@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"sync"
 	"time"
-
-	"github.com/prometheus/common/log"
 )
 
 func asyncMethod(value string) chan interface{} {
@@ -48,37 +47,24 @@ func resolveAll(ch ...chan interface{}) chan interface{} {
 }
 
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(2)
+	result := <-asyncMethod("foo")
+	switch v := result.(type) {
+	case string:
+		fmt.Println(v)
+	case error:
+		fmt.Fprintln(os.Stderr, v)
+	}
 
-	go func() {
-		result := <-asyncMethod("foo")
-		switch v := result.(type) {
-		case string:
-			fmt.Println(v)
-		case error:
-			log.Errorln(v)
-		}
+	result = <-resolveAll(
+		asyncMethod("A"),
+		asyncMethod("B"),
+		asyncMethod("C"),
+	)
 
-		wg.Done()
-	}()
-
-	go func() {
-		result := <-resolveAll(
-			asyncMethod("A"),
-			asyncMethod("B"),
-			asyncMethod("C"),
-		)
-
-		switch v := result.(type) {
-		case []string:
-			fmt.Println(v)
-		case error:
-			log.Errorln(v)
-		}
-
-		wg.Done()
-	}()
-
-	wg.Wait()
+	switch v := result.(type) {
+	case []string:
+		fmt.Println(v)
+	case error:
+		fmt.Fprintln(os.Stderr, v)
+	}
 }

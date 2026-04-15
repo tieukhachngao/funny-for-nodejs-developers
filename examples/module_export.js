@@ -1,5 +1,5 @@
 module.exports = {
   greet(name) {
-    console.log(`hello ${name}`)
+    process.stdout.write(`hello ${name}`)
   }
 }

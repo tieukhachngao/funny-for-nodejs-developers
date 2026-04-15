@@ -7,4 +7,4 @@ console.log(match)
 
 input = '111-222-333'
 let matches = input.match(/([0-9]+)/gi)
-console.log(matches)
+console.log(`[${matches.join(' ')}]`)

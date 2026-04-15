@@ -16,7 +16,7 @@ function main() {
     asyncMethod('B'),
     asyncMethod('C')
   ])
-  .then(result => console.log(result))
+  .then(result => console.log(`[${result.join(' ')}]`))
   .catch(err => console.error(err))
 }
 

@@ -1,6 +1,6 @@
 const err1 = new Error('some error')
 
-console.log(err1)
+console.log(err1.message)
 
 class FooError extends Error{
   constructor(message) {
@@ -16,4 +16,4 @@ class FooError extends Error{
 
 const err2 = new FooError('my custom error')
 
-console.log(err2)
+console.log(err2.message)

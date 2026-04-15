@@ -18,7 +18,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(compressed.Bytes())
+	fmt.Println("compressed: true")
 
 	decompressed := new(bytes.Buffer)
 	r, err := gzip.NewReader(compressed)

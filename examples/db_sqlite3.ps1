@@ -2,4 +2,6 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-& sqlite3 sqlite3.db "CREATE TABLE persons (name TEXT); INSERT INTO persons VALUES (alice),(bob),(charlie); SELECT rowid, name FROM persons;"
+Remove-Item -Force sqlite3.db -ErrorAction SilentlyContinue
+& sqlite3 sqlite3.db "CREATE TABLE persons (name TEXT); INSERT INTO persons VALUES ('alice'),('bob'),('charlie'); SELECT rowid, name FROM persons;" |
+  ForEach-Object { $_ -replace "\|", " " }

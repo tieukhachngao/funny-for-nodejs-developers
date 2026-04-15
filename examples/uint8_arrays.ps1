@@ -4,7 +4,9 @@ $ErrorActionPreference = 'Stop'
 
 [byte[]]$array = 0,0,0,0,0,0,0,0,0,0
 "[$($array -join ' ')]"
-$array[1..3] = 1,2,3
+$array[1] = 1
+$array[2] = 2
+$array[3] = 3
 "[$($array -join ' ')]"
 "[$($array[2..9] -join ' ')]"
 "[$($array[2..3] -join ' ')]"

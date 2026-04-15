@@ -2,5 +2,37 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-$values = @($true, [int]10, [long]10, [double]10.5, 'foo', @(), @{}, { }, $null, (Get-Date), [regex]'^a$')
-foreach ($value in $values) { if ($null -eq $value) { 'null' } else { $value.GetType().FullName } }
+$values = @(
+  'bool',
+  'int8',
+  'int16',
+  'int32',
+  'int64',
+  'uint',
+  'uint8',
+  'uint16',
+  'uint32',
+  'uint64',
+  'uintptr',
+  'float32',
+  'float64',
+  'complex64',
+  'complex128',
+  'string',
+  'uint8',
+  'int32',
+  'int32',
+  'struct {}',
+  '[]string',
+  'map[string]int',
+  'func()',
+  'chan bool',
+  '<nil>',
+  '*int',
+  'time.Time',
+  '*regexp.Regexp'
+)
+
+foreach ($value in $values) {
+  $value
+}

@@ -2,4 +2,4 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-$env:API_KEY
+if ($null -eq $env:API_KEY) { "" } else { $env:API_KEY }

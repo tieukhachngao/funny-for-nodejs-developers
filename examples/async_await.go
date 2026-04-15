@@ -3,9 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
+	"os"
 	"time"
-
-	"github.com/prometheus/common/log"
 )
 
 func hello(name string) chan interface{} {
@@ -28,7 +27,7 @@ func main() {
 	case string:
 		fmt.Println(v)
 	case error:
-		log.Errorln(v)
+		fmt.Fprintln(os.Stderr, v)
 	}
 
 	result = <-hello("fail")
@@ -36,6 +35,6 @@ func main() {
 	case string:
 		fmt.Println(v)
 	case error:
-		log.Errorln(v)
+		fmt.Fprintln(os.Stderr, v)
 	}
 }

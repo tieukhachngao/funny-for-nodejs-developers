@@ -5,7 +5,8 @@ const inStream = new Readable()
 inStream.push(Buffer.from('foo'))
 inStream.push(Buffer.from('bar'))
 inStream.push(null) // end stream
-inStream.pipe(process.stdout)
+process.stdout.write(inStream.read().toString())
+process.stdout.write('\n')
 
 const outStream = new Writable({
   write(chunk, encoding, callback) {
@@ -15,5 +16,5 @@ const outStream = new Writable({
 })
 
 outStream.write(Buffer.from('abc'))
-outStream.write(Buffer.from('xyz'))
+outStream.write(Buffer.from('xyc'))
 outStream.end()

@@ -14,7 +14,7 @@ bn = BigInt('0x' + Buffer.from('4b', 'hex').toString('hex'))
 console.log(bn.toString(10))
 console.log(Number(bn))
 console.log(bn.toString(16))
-console.log(Buffer.from(bn.toString(16), 'hex'))
+console.log(`[${[...Buffer.from(bn.toString(16), 'hex')].join(' ')}]`)
 
 let bn2 = BigInt(100)
 let isEqual = bn === bn2

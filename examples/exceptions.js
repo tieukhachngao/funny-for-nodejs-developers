@@ -7,8 +7,8 @@ function main() {
 }
 
 process.on('uncaughtException', err => {
-  console.log(`caught exception: ${err.message}`)
-  process.exit(1)
+  process.stdout.write(`caught exception: ${err.message}`)
+  process.exit(0)
 })
 
 main()

@@ -2,4 +2,4 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-& cmd /c echo hello world
+& echo "hello world"

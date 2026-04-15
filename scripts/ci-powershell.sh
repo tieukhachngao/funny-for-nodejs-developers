@@ -42,6 +42,72 @@ if command -v pwsh >/dev/null 2>&1; then
     printf 'pwsh parse %s\n' "$file"
     pwsh -NoLogo -NoProfile -Command "\$errors = \$null; [System.Management.Automation.Language.Parser]::ParseFile('$file', [ref]\$null, [ref]\$errors) > \$null; if (\$errors.Count -gt 0) { \$errors | ForEach-Object { Write-Error \$_ }; exit 1 }"
   done < <(find examples -name '*.ps1' | sort)
+
+  smoke_tests=(
+    array_iteration
+    array_sort
+    arrays
+    async_await
+    benchmark_test
+    big_numbers
+    buffers
+    class
+    cli_args
+    cli_flags
+    comments
+    crypto
+    datetime
+    default_values
+    destructuring
+    documentation
+    env_vars
+    errors
+    event_emitter
+    example_test
+    exceptions
+    exec
+    exec_sync
+    files
+    for_loop
+    functions
+    generators
+    gzip
+    ifelse
+    iife
+    interpolation
+    interval
+    json
+    logging
+    maps
+    module_export
+    module_export_usage
+    module_import
+    objects
+    print
+    promises
+    regex
+    rest
+    spread
+    stack_trace
+    stderr
+    stdout
+    streams
+    swapping
+    switch
+    timeout
+    try_catch
+    type_check
+    types
+    uint8_arrays
+    variables
+    while_loop
+  )
+
+  for name in "${smoke_tests[@]}"; do
+    file="examples/$name.ps1"
+    printf 'pwsh run %s\n' "$file"
+    pwsh -NoLogo -NoProfile -File "$file" >/tmp/"$name".pwsh.out 2>/tmp/"$name".pwsh.err
+  done
 fi
 
 printf 'powershell checks ok\n'

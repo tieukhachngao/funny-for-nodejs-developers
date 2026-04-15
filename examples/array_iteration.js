@@ -1,4 +1,5 @@
 const array = ['a', 'b', 'c']
+const formatArray = values => `[${values.join(' ')}]`
 
 array.forEach((value, i) => {
   console.log(i, value)
@@ -8,13 +9,13 @@ const mapped = array.map(value => {
   return value.toUpperCase()
 })
 
-console.log(mapped)
+console.log(formatArray(mapped))
 
 const filtered = array.filter((value, i) => {
   return i % 2 == 0
 })
 
-console.log(filtered)
+console.log(formatArray(filtered))
 
 const reduced = array.reduce((acc, value, i) => {
   if (i % 2 == 0) {
@@ -24,4 +25,4 @@ const reduced = array.reduce((acc, value, i) => {
   return acc
 }, [])
 
-console.log(reduced)
+console.log(formatArray(reduced))

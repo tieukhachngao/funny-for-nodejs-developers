@@ -3334,7 +3334,7 @@ function main() {
     asyncMethod('B'),
     asyncMethod('C')
   ])
-  .then(result => console.log(result))
+  .then(result => console.log(`[${result.join(' ')}]`))
   .catch(err => console.error(err))
 }
 
@@ -3357,10 +3357,9 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"sync"
 	"time"
-
-	"github.com/prometheus/common/log"
 )
 
 func asyncMethod(value string) chan interface{} {
@@ -3403,39 +3402,26 @@ func resolveAll(ch ...chan interface{}) chan interface{} {
 }
 
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(2)
+	result := <-asyncMethod("foo")
+	switch v := result.(type) {
+	case string:
+		fmt.Println(v)
+	case error:
+		fmt.Fprintln(os.Stderr, v)
+	}
 
-	go func() {
-		result := <-asyncMethod("foo")
-		switch v := result.(type) {
-		case string:
-			fmt.Println(v)
-		case error:
-			log.Errorln(v)
-		}
+	result = <-resolveAll(
+		asyncMethod("A"),
+		asyncMethod("B"),
+		asyncMethod("C"),
+	)
 
-		wg.Done()
-	}()
-
-	go func() {
-		result := <-resolveAll(
-			asyncMethod("A"),
-			asyncMethod("B"),
-			asyncMethod("C"),
-		)
-
-		switch v := result.(type) {
-		case []string:
-			fmt.Println(v)
-		case error:
-			log.Errorln(v)
-		}
-
-		wg.Done()
-	}()
-
-	wg.Wait()
+	switch v := result.(type) {
+	case []string:
+		fmt.Println(v)
+	case error:
+		fmt.Fprintln(os.Stderr, v)
+	}
 }
 ```
 
@@ -3529,9 +3515,8 @@ package main
 import (
 	"errors"
 	"fmt"
+	"os"
 	"time"
-
-	"github.com/prometheus/common/log"
 )
 
 func hello(name string) chan interface{} {
@@ -3551,18 +3536,18 @@ func hello(name string) chan interface{} {
 func main() {
 	result := <-hello("bob")
 	switch v := result.(type) {
-	case string:
-		fmt.Println(v)
-	case error:
-		log.Errorln(v)
+		case string:
+			fmt.Println(v)
+		case error:
+			fmt.Fprintln(os.Stderr, v)
 	}
 
 	result = <-hello("fail")
 	switch v := result.(type) {
-	case string:
-		fmt.Println(v)
-	case error:
-		log.Errorln(v)
+		case string:
+			fmt.Println(v)
+		case error:
+			fmt.Fprintln(os.Stderr, v)
 	}
 }
 ```
@@ -5046,9 +5031,21 @@ printf '[%s]\n' "$*"
 #### Node.js
 
 ```node
-const yargs = require('yargs')
+const args = process.argv.slice(2)
 
-const { foo='default value', qux=false } = yargs.argv
+let foo = 'default value'
+let qux = false
+
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i]
+  if (arg === '--foo' || arg === '-foo') {
+    foo = args[i + 1]
+    i++
+  } else if (arg === '--qux' || arg === '-qux') {
+    qux = true
+  }
+}
+
 console.log('foo:', foo)
 console.log('qux:', qux)
 ```
@@ -5596,39 +5593,30 @@ Example of creating a table, inserting rows, and reading rows from a sqlite3 dat
 #### Node.js
 
 ```node
-const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('./sqlite3.db')
+const { execFileSync } = require('child_process')
+const fs = require('fs')
 
-db.serialize(() => {
-  db.run('CREATE TABLE persons (name TEXT)')
+const db = 'sqlite3.db'
+if (fs.existsSync(db)) {
+  fs.unlinkSync(db)
+}
 
-  const stmt = db.prepare('INSERT INTO persons VALUES (?)')
-  const names = ['alice', 'bob', 'charlie']
-  for (let i = 0; i < names.length; i++) {
-    stmt.run(names[i])
-  }
+const sql = [
+  'CREATE TABLE persons (name TEXT);',
+  "INSERT INTO persons VALUES ('alice'),('bob'),('charlie');",
+  'SELECT rowid, name FROM persons;',
+].join(' ')
 
-  stmt.finalize()
-
-  db.each('SELECT rowid AS id, name FROM persons', (err, row) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-
-    console.log(row.id, row.name)
-  })
-})
-
-db.close()
+const output = execFileSync('sqlite3', [db, sql], { encoding: 'utf8' })
+process.stdout.write(output.replace(/\|/g, ' '))
 ```
 
 Output
 
 ```bash
-1 'alice'
-2 'bob'
-3 'charlie'
+1 alice
+2 bob
+3 charlie
 ```
 
 #### Go

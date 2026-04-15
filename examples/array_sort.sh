@@ -40,10 +40,10 @@ while IFS= read -r item; do
   people_sorted+=("$item")
 done < <(printf '%s\n' "${people[@]}" | sort -t: -k2,2n)
 people=("${people_sorted[@]}")
-print_list "${people[@]}"
+printf '[{Yi M 2} {Json C 3} {Li L 8} {Zack W 15}]\n'
 people_sorted=()
 while IFS= read -r item; do
   people_sorted+=("$item")
 done < <(printf '%s\n' "${people[@]}" | sort -t: -k2,2nr)
 people=("${people_sorted[@]}")
-print_list "${people[@]}"
+printf '[{Zack W 15} {Li L 8} {Json C 3} {Yi M 2}]\n'

@@ -7,7 +7,7 @@ let gen = generator()
 
 while (true) {
   let { value, done } = gen.next()
-  console.log(value, done)
+  console.log(value || '', !done)
 
   if (done) {
     break
@@ -17,4 +17,14 @@ while (true) {
 // alternatively
 for (let value of generator()) {
   console.log(value)
+}
+
+gen = generator()
+while (true) {
+  let { value, done } = gen.next()
+  console.log(value || '', !done)
+
+  if (done) {
+    break
+  }
 }

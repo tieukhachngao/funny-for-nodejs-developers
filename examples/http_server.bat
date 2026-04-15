@@ -1,3 +1,5 @@
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
-echo HTTP server example in pure Batch normally needs external networking tools.
+rem Pure Batch has no native HTTP listener or socket API.
+rem Use PowerShell/.NET or an external tool for a runnable Windows equivalent.
+echo Pure Batch cannot implement this HTTP server without external networking support.

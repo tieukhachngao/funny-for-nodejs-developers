@@ -1,25 +1,16 @@
-const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('./sqlite3.db')
+const { execFileSync } = require('child_process')
+const fs = require('fs')
 
-db.serialize(() => {
-  db.run('CREATE TABLE persons (name TEXT)')
+const db = 'sqlite3.db'
+if (fs.existsSync(db)) {
+  fs.unlinkSync(db)
+}
 
-  const stmt = db.prepare('INSERT INTO persons VALUES (?)')
-  const names = ['alice', 'bob', 'charlie']
-  for (let i = 0; i < names.length; i++) {
-    stmt.run(names[i])
-  }
+const sql = [
+  'CREATE TABLE persons (name TEXT);',
+  "INSERT INTO persons VALUES ('alice'),('bob'),('charlie');",
+  'SELECT rowid, name FROM persons;',
+].join(' ')
 
-  stmt.finalize()
-
-  db.each('SELECT rowid AS id, name FROM persons', (err, row) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-
-    console.log(row.id, row.name)
-  })
-})
-
-db.close()
+const output = execFileSync('sqlite3', [db, sql], { encoding: 'utf8' })
+process.stdout.write(output.replace(/\|/g, ' '))

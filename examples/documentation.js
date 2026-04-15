@@ -33,3 +33,6 @@ class Person {
     this.name = name
   }
 }
+
+const person = new Person('bob')
+console.log(person.getName())

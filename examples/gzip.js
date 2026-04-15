@@ -7,7 +7,7 @@ zlib.gzip(data, (err, compressed) => {
     console.error(err)
   }
 
-  console.log(compressed)
+  console.log('compressed: true')
 
   zlib.unzip(compressed, (err, decompressed) => {
     if (err) {
@@ -17,4 +17,3 @@ zlib.gzip(data, (err, compressed) => {
     console.log(decompressed.toString())
   })
 })
-

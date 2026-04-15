@@ -10,6 +10,6 @@ exec(`echo 'hello world'`, (error, stdout, stderr) => {
   }
 
   if (stdout) {
-    console.log(stdout)
+    process.stdout.write(stdout)
   }
 })

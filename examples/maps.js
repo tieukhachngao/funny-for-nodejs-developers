@@ -13,7 +13,7 @@ found = map.has('foo')
 console.log(found)
 
 item = map.get('foo')
-console.log(item)
+console.log(item || '')
 
 const map2 = {}
 map2['foo'] = 'bar'

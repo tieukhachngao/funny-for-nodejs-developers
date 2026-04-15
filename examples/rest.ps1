@@ -2,5 +2,8 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-function Sum { param([int[]]$Nums) ($Nums | Measure-Object -Sum).Sum }
+function Sum {
+  param([Parameter(ValueFromRemainingArguments=$true)][int[]]$Nums)
+  ($Nums | Measure-Object -Sum).Sum
+}
 Sum 1 2 3 4 5

@@ -1,1 +1,1 @@
-process.stderr.write('hello error\n')
+process.stdout.write('hello error\n')

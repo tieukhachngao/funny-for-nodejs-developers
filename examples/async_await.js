@@ -17,8 +17,8 @@ async function main() {
 
     output = await hello('fail')
     console.log(output)
-  } catch(err) {
-    console.log(err.message)
+  } catch (err) {
+    console.error(err.message)
   }
 }
 

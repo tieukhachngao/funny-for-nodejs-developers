@@ -1,4 +1,4 @@
-package person
+package main
 
 import "fmt"
 
@@ -21,6 +21,7 @@ func (p *Person) GetName() string {
 
 // SetName sets the person's name
 func (p *Person) SetName(name string) string {
+	p.name = name
 	return p.name
 }
 
@@ -43,4 +44,9 @@ func ExamplePerson_GetName() {
 func ExamplePerson_SetName() {
 	person := NewPerson("alice")
 	person.SetName("bob")
+}
+
+func main() {
+	person := NewPerson("bob")
+	fmt.Println(person.GetName())
 }

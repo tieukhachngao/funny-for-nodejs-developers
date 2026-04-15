@@ -1,17 +1,19 @@
-const stringArray = ['a', 'd', 'z', 'b', 'c', 'y']
-const stringArraySortedAsc = stringArray.sort((a, b) => a > b ? 1 : -1)
-console.log(stringArraySortedAsc)
-
-const stringArraySortedDesc = stringArray.sort((a, b) => a > b ? -1 : 1)
-console.log(stringArraySortedDesc)
-
+const formatArray = values => `[${values.join(' ')}]`
+const formatPeople = people => `[${people.map(({ name, age }) => `{${name} ${age}}`).join(' ')}]`
 
 const numberArray = [1, 3, 5, 9, 4, 2, 0]
 const numberArraySortedAsc = numberArray.sort((a, b) => a - b)
-console.log(numberArraySortedAsc)
+console.log(formatArray(numberArraySortedAsc))
 
 const numberArraySortedDesc = numberArray.sort((a, b) => b - a)
-console.log(numberArraySortedDesc)
+console.log(formatArray(numberArraySortedDesc))
+
+const stringArray = ['a', 'd', 'z', 'b', 'c', 'y']
+const stringArraySortedAsc = stringArray.sort((a, b) => a > b ? 1 : -1)
+console.log(formatArray(stringArraySortedAsc))
+
+const stringArraySortedDesc = stringArray.sort((a, b) => a > b ? -1 : 1)
+console.log(formatArray(stringArraySortedDesc))
 
 const collection = [
     {
@@ -33,7 +35,7 @@ const collection = [
 ]
 
 const collectionSortedByAgeAsc = collection.sort((a, b) => a.age - b.age)
-console.log(collectionSortedByAgeAsc)
+console.log(formatPeople(collectionSortedByAgeAsc))
 
 const collectionSortedByAgeDesc = collection.sort((a, b) => b.age - a.age)
-console.log(collectionSortedByAgeDesc)
+console.log(formatPeople(collectionSortedByAgeDesc))

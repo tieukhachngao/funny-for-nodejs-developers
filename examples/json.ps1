@@ -4,5 +4,5 @@ $ErrorActionPreference = 'Stop'
 
 $jsonstr = '{"foo":"bar"}'
 $t = $jsonstr | ConvertFrom-Json
-$t
+"&{$($t.foo)}"
 $t | ConvertTo-Json -Compress
