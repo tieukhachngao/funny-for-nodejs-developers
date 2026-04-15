@@ -26,6 +26,7 @@ The goal of this repository is to inherit that learning resource honestly and ex
 - [Attribution](#attribution)
 - [Examples](#examples)
   - [Language coverage](#language-coverage)
+  - [Helper modules](#helper-modules)
   - [comments](#comments)
   - [printing](#printing)
   - [logging](#logging)
@@ -235,6 +236,19 @@ Every top-level example has matching Go, Node.js, Shell Script, Batch, and Power
 | `url parse` | [url_parse.go](examples/url_parse.go) | [url_parse.js](examples/url_parse.js) | [url_parse.sh](examples/url_parse.sh) | [url_parse.bat](examples/url_parse.bat) | [url_parse.ps1](examples/url_parse.ps1) |
 | `variables` | [variables.go](examples/variables.go) | [variables.js](examples/variables.js) | [variables.sh](examples/variables.sh) | [variables.bat](examples/variables.bat) | [variables.ps1](examples/variables.ps1) |
 | `while loop` | [while_loop.go](examples/while_loop.go) | [while_loop.js](examples/while_loop.js) | [while_loop.sh](examples/while_loop.sh) | [while_loop.bat](examples/while_loop.bat) | [while_loop.ps1](examples/while_loop.ps1) |
+
+### Helper modules
+
+The module export examples also use helper greeter modules. Each helper implements the same behavior: print `hello <name>` with `bob` as the default name.
+
+| Helper | Language | Entry point |
+| --- | --- | --- |
+| `greeter_go` | Go | [examples/greeter_go/greeter.go](examples/greeter_go/greeter.go) |
+| `greeter_node` | Node.js | [examples/greeter_node/index.js](examples/greeter_node/index.js) |
+| `getter_shellscript` | Shell Script | [examples/getter_shellscript/index.sh](examples/getter_shellscript/index.sh) |
+| `getter_batch` | Batch | [examples/getter_batch/index.bat](examples/getter_batch/index.bat) |
+| `getter_powershell` | PowerShell | [examples/getter_powershell/index.ps1](examples/getter_powershell/index.ps1) |
+| `greeter_assembly` | Assembly | [examples/greeter_assembly/build.sh](examples/greeter_assembly/build.sh) |
 
 ### comments
 ---

@@ -59,6 +59,12 @@ if [[ ! -f examples/getter_powershell/index.ps1 ]]; then
   exit 1
 fi
 
+if [[ ! -x examples/greeter_assembly/build.sh ]]; then
+  printf 'examples/greeter_assembly/build.sh is required and must be executable\n' >&2
+  find examples/greeter_assembly -maxdepth 1 -type f -print >&2
+  exit 1
+fi
+
 stale_paths="$tmpdir/stale-paths.txt"
 grep -En 'getter_shellscript/.*\.sh' README.md examples/getter_shellscript/README.md >"$stale_paths" || true
 if grep -v 'getter_shellscript/index\.sh' "$stale_paths" >/dev/null; then
