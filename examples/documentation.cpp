@@ -1,13 +1,22 @@
-// Generated C++ example for examples/documentation.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {98, 111, 98, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 4u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+typedef struct { const char *name; } Person;
+static Person new_person(const char *name) { Person person = {name}; return person; }
+static const char *get_name(const Person *person) { return person->name; }
+int main(void) { Person person = new_person("bob"); printf("%s\n", get_name(&person)); return 0; }

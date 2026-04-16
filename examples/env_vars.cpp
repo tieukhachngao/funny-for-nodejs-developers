@@ -1,13 +1,19 @@
-// Generated C++ example for examples/env_vars.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 1u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main(void) { const char *value = getenv("API_KEY"); printf("%s\n", value ? value : ""); return 0; }

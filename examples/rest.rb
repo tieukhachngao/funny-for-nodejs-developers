@@ -1,5 +1,5 @@
-# Generated Ruby example for examples/rest.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+def sum(*nums)
+  nums.sum
+end
 
-STDOUT.write([49, 53, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+puts sum(1, 2, 3, 4, 5)

@@ -1,13 +1,20 @@
-// Generated C++ example for examples/objects.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {98, 97, 114, 10, 98, 97, 114, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 8u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+class Obj { public: Obj() : some_properties{{"foo", "bar"}} {} std::string some_method(const std::string& prop) const { return some_properties.at(prop); } std::map<std::string, std::string> some_properties; };
+int main() { Obj obj; std::cout << obj.some_properties["foo"] << '\n'; std::cout << obj.some_method("foo") << '\n'; }

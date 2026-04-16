@@ -1,5 +1,5 @@
-# Generated Ruby example for examples/functions.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+def add(a, b)
+  a + b
+end
 
-STDOUT.write([53, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+puts add(2, 3)

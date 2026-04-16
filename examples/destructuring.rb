@@ -1,5 +1,11 @@
-# Generated Ruby example for examples/destructuring.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+Obj = Struct.new(:key, :value) do
+  def read
+    [key, value]
+  end
+end
 
-STDOUT.write([102, 111, 111, 32, 98, 97, 114, 10, 102, 111, 111, 32, 98, 97, 114, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+obj = Obj.new('foo', 'bar')
+key, value = obj.key, obj.value
+puts "#{key} #{value}"
+key, value = obj.read
+puts "#{key} #{value}"

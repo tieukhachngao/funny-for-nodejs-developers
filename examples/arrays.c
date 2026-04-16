@@ -1,13 +1,25 @@
-/* Generated C example for examples/arrays.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {91, 49, 32, 50, 32, 51, 32, 52, 32, 53, 93, 10, 91, 49, 32, 50, 32, 51, 32, 52, 32, 53, 93, 10, 91, 51, 32, 52, 93, 10, 91, 49, 32, 50, 32, 51, 32, 52, 32, 53, 32, 54, 32, 55, 93, 10, 91, 45, 50, 32, 45, 49, 32, 48, 32, 49, 32, 50, 32, 51, 32, 52, 32, 53, 32, 54, 32, 55, 93, 10};
-static const unsigned char stderr_bytes[] = {0};
+static void print_ints(const int *values, size_t len) {
+    printf("[");
+    for (size_t i = 0; i < len; i++) printf("%s%d", i ? " " : "", values[i]);
+    printf("]\n");
+}
 
 int main(void) {
-    fwrite(stdout_bytes, 1, 70u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
+    int array[] = {1, 2, 3, 4, 5};
+    print_ints(array, 5);
+    int clone[5];
+    memcpy(clone, array, sizeof(array));
+    print_ints(clone, 5);
+    print_ints(array + 2, 2);
+    int concatenated[] = {1, 2, 3, 4, 5, 6, 7};
+    print_ints(concatenated, 7);
+    int prepended[] = {-2, -1, 0, 1, 2, 3, 4, 5, 6, 7};
+    print_ints(prepended, 10);
     return 0;
 }

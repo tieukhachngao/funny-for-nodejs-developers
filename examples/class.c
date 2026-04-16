@@ -1,13 +1,11 @@
-/* Generated C example for examples/class.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {98, 97, 114, 10, 113, 117, 120, 10};
-static const unsigned char stderr_bytes[] = {0};
-
-int main(void) {
-    fwrite(stdout_bytes, 1, 8u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+typedef struct { const char *item; } Foo;
+static Foo new_foo(const char *value) { Foo foo = {value}; return foo; }
+static const char *get_item(const Foo *foo) { return foo->item; }
+static void set_item(Foo *foo, const char *value) { foo->item = value; }
+int main(void) { Foo foo = new_foo("bar"); printf("%s\n", foo.item); set_item(&foo, "qux"); printf("%s\n", get_item(&foo)); return 0; }

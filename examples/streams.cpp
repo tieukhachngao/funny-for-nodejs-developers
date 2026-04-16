@@ -1,13 +1,19 @@
-// Generated C++ example for examples/streams.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {102, 111, 111, 98, 97, 114, 10, 114, 101, 99, 101, 105, 118, 101, 100, 58, 32, 97, 98, 99, 10, 114, 101, 99, 101, 105, 118, 101, 100, 58, 32, 120, 121, 99, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 35u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main(void) { char in_stream[16] = {0}; strcat(in_stream, "foo"); strcat(in_stream, "bar"); printf("%s\n", in_stream); const char *lines[] = {"abc", "xyc"}; for (int i = 0; i < 2; i++) printf("received: %s\n", lines[i]); return 0; }

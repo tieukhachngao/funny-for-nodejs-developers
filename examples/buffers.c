@@ -1,13 +1,16 @@
-/* Generated C example for examples/buffers.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 97, 98, 10, 97, 98, 57, 48, 55, 56, 53, 54, 51, 52, 49, 50, 10, 102, 97, 108, 115, 101, 10, 116, 114, 117, 101, 10};
-static const unsigned char stderr_bytes[] = {0};
-
+static void print_hex(const unsigned char *buf, size_t len) { for (size_t i = 0; i < len; i++) printf("%02x", buf[i]); printf("\n"); }
 int main(void) {
-    fwrite(stdout_bytes, 1, 37u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
+    unsigned char be[] = {0x12, 0x34, 0x56, 0x78, 0x90, 0xab};
+    unsigned char le[] = {0xab, 0x90, 0x78, 0x56, 0x34, 0x12};
+    print_hex(be, sizeof be);
+    print_hex(le, sizeof le);
+    printf("%s\n", memcmp(be, le, sizeof be) == 0 ? "true" : "false");
+    printf("%s\n", memcmp(be, be, sizeof be) == 0 ? "true" : "false");
     return 0;
 }

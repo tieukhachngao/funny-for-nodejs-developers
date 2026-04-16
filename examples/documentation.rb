@@ -1,5 +1,11 @@
-# Generated Ruby example for examples/documentation.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+# Person is the structure of a person.
+class Person
+  def initialize(name)
+    @name = name
+  end
 
-STDOUT.write([98, 111, 98, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+  attr_accessor :name
+end
+
+person = Person.new('bob')
+puts person.name

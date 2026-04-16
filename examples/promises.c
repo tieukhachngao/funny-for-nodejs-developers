@@ -1,13 +1,8 @@
-/* Generated C example for examples/promises.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 102, 111, 111, 10, 91, 114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 65, 32, 114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 66, 32, 114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 67, 93, 10};
-static const unsigned char stderr_bytes[] = {0};
-
-int main(void) {
-    fwrite(stdout_bytes, 1, 52u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+static const char *async_method(const char *value, char *buf, size_t len) { snprintf(buf, len, "resolved: %s", value); return buf; }
+int main(void) { char a[32], b[32], cbuf[32], foo[32]; printf("%s\n", async_method("foo", foo, sizeof foo)); printf("[%s %s %s]\n", async_method("A", a, sizeof a), async_method("B", b, sizeof b), async_method("C", cbuf, sizeof cbuf)); return 0; }

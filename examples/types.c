@@ -1,13 +1,8 @@
-/* Generated C example for examples/types.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {0};
-static const unsigned char stderr_bytes[] = {0};
-
-int main(void) {
-    fwrite(stdout_bytes, 1, 0u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+typedef struct {} Empty;
+int main(void) { bool my_bool = true; int my_int = 10; float my_float = 10.5f; const char *my_string = "foo"; Empty my_struct = {}; (void)my_bool; (void)my_int; (void)my_float; (void)my_string; (void)my_struct; return 0; }

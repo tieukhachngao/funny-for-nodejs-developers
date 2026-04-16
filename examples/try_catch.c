@@ -1,13 +1,8 @@
-/* Generated C example for examples/try_catch.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {99, 97, 117, 103, 104, 116, 32, 101, 114, 114, 111, 114, 58, 32, 109, 121, 32, 101, 114, 114, 111, 114, 10};
-static const unsigned char stderr_bytes[] = {0};
-
-int main(void) {
-    fwrite(stdout_bytes, 1, 23u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+static const char *foo(bool fail) { return fail ? "my error" : NULL; }
+int main(void) { const char *err = foo(true); if (err) printf("caught error: %s\n", err); return 0; }

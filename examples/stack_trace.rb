@@ -1,5 +1,5 @@
-# Generated Ruby example for examples/stack_trace.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([].pack('C*'))
-STDERR.write([].pack('C*'))
+begin
+  raise 'failed'
+rescue
+  puts caller.join("\n")
+end

@@ -1,5 +1,14 @@
-# Generated Ruby example for examples/uint8_arrays.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+def fmt(values)
+  "[#{values.join(' ')}]"
+end
 
-STDOUT.write([91, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 48, 32, 49, 32, 50, 32, 51, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 50, 32, 51, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 50, 32, 51, 93, 10, 91, 48, 32, 49, 32, 50, 32, 51, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 48, 32, 49, 32, 50, 32, 51, 32, 48, 32, 57, 32, 57, 32, 57, 32, 57, 32, 57, 93, 10, 49, 48, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+array = Array.new(10, 0)
+puts fmt(array)
+array[1, 3] = [1, 2, 3]
+puts fmt(array)
+puts fmt(array[2..])
+puts fmt(array[2...4])
+puts fmt(array)
+(5...10).each { |i| array[i] = 9 }
+puts fmt(array)
+puts array.length

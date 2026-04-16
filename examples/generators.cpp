@@ -1,13 +1,19 @@
-// Generated C++ example for examples/generators.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {104, 101, 108, 108, 111, 32, 116, 114, 117, 101, 10, 119, 111, 114, 108, 100, 32, 116, 114, 117, 101, 10, 32, 102, 97, 108, 115, 101, 10, 104, 101, 108, 108, 111, 10, 119, 111, 114, 108, 100, 10, 104, 101, 108, 108, 111, 32, 116, 114, 117, 101, 10, 119, 111, 114, 108, 100, 32, 116, 114, 117, 101, 10, 32, 102, 97, 108, 115, 101, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 70u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main(void) { const char *values[] = {"hello", "world"}; for (int i = 0; i < 2; i++) printf("%s true\n", values[i]); printf(" false\n"); for (int i = 0; i < 2; i++) printf("%s\n", values[i]); for (int i = 0; i < 2; i++) printf("%s true\n", values[i]); printf(" false\n"); return 0; }

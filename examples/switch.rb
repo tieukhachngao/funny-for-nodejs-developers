@@ -1,5 +1,24 @@
-# Generated Ruby example for examples/switch.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+value = 'b'
+case value
+when 'a' then puts 'A'
+when 'b' then puts 'B'
+when 'c' then puts 'C'
+else puts 'first default'
+end
 
-STDOUT.write([66, 10, 66, 32, 45, 32, 102, 97, 108, 108, 105, 110, 103, 32, 116, 104, 114, 111, 117, 103, 104, 10, 67, 32, 45, 32, 102, 97, 108, 108, 105, 110, 103, 32, 116, 104, 114, 111, 117, 103, 104, 10, 115, 101, 99, 111, 110, 100, 32, 100, 101, 102, 97, 117, 108, 116, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+case value
+when 'a'
+  puts 'A - falling through'
+  puts 'B - falling through'
+  puts 'C - falling through'
+  puts 'second default'
+when 'b'
+  puts 'B - falling through'
+  puts 'C - falling through'
+  puts 'second default'
+when 'c'
+  puts 'C - falling through'
+  puts 'second default'
+else
+  puts 'second default'
+end

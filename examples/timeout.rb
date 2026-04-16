@@ -1,5 +1,2 @@
-# Generated Ruby example for examples/timeout.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([].pack('C*'))
-STDERR.write([].pack('C*'))
+thread = Thread.new { sleep 1; puts 'called' }
+thread.join

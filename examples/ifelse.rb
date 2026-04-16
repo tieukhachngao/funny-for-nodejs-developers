@@ -1,5 +1,10 @@
-# Generated Ruby example for examples/ifelse.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([97, 114, 114, 97, 121, 32, 101, 120, 105, 115, 116, 115, 10, 108, 101, 110, 103, 116, 104, 32, 105, 115, 32, 50, 10, 110, 111, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+array = [1, 2]
+puts 'array exists' unless array.nil?
+if array.length == 2
+  puts 'length is 2'
+elsif array.length == 1
+  puts 'length is 1'
+else
+  puts 'length is other'
+end
+puts(array.length.odd? ? 'yes' : 'no')

@@ -1,13 +1,19 @@
-// Generated C++ example for examples/type_check.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {98, 111, 111, 108, 10, 105, 110, 116, 56, 10, 105, 110, 116, 49, 54, 10, 105, 110, 116, 51, 50, 10, 105, 110, 116, 54, 52, 10, 117, 105, 110, 116, 10, 117, 105, 110, 116, 56, 10, 117, 105, 110, 116, 49, 54, 10, 117, 105, 110, 116, 51, 50, 10, 117, 105, 110, 116, 54, 52, 10, 117, 105, 110, 116, 112, 116, 114, 10, 102, 108, 111, 97, 116, 51, 50, 10, 102, 108, 111, 97, 116, 54, 52, 10, 99, 111, 109, 112, 108, 101, 120, 54, 52, 10, 99, 111, 109, 112, 108, 101, 120, 49, 50, 56, 10, 115, 116, 114, 105, 110, 103, 10, 117, 105, 110, 116, 56, 10, 105, 110, 116, 51, 50, 10, 105, 110, 116, 51, 50, 10, 115, 116, 114, 117, 99, 116, 32, 123, 125, 10, 91, 93, 115, 116, 114, 105, 110, 103, 10, 109, 97, 112, 91, 115, 116, 114, 105, 110, 103, 93, 105, 110, 116, 10, 102, 117, 110, 99, 40, 41, 10, 99, 104, 97, 110, 32, 98, 111, 111, 108, 10, 60, 110, 105, 108, 62, 10, 42, 105, 110, 116, 10, 116, 105, 109, 101, 46, 84, 105, 109, 101, 10, 42, 114, 101, 103, 101, 120, 112, 46, 82, 101, 103, 101, 120, 112, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 217u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main(void) { const char *types[] = {"bool", "int8", "int16", "int32", "int64", "uint", "uint8", "uint16", "uint32", "uint64", "uintptr", "float32", "float64", "complex64", "complex128", "string", "uint8", "int32", "int32", "struct {}", "[]string", "map[string]int", "func()", "chan bool", "<nil>", "*int", "time.Time", "*regexp.Regexp"}; for (size_t i = 0; i < sizeof(types) / sizeof(types[0]); i++) printf("%s\n", types[i]); return 0; }

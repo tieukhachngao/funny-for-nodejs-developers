@@ -1,11 +1,14 @@
 SHELL := bash
 
-.PHONY: ci structure go node c cpp ruby shell batch powershell assembly output
+.PHONY: ci structure quality go node c cpp ruby shell batch powershell assembly output
 
-ci: structure go node c cpp ruby shell batch powershell assembly output
+ci: structure quality go node c cpp ruby shell batch powershell assembly output
 
 structure:
 	./scripts/ci-structure.sh
+
+quality:
+	./scripts/ci-source-quality.sh
 
 go:
 	./scripts/ci-go.sh

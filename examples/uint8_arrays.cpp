@@ -1,13 +1,20 @@
-// Generated C++ example for examples/uint8_arrays.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {91, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 48, 32, 49, 32, 50, 32, 51, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 50, 32, 51, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 50, 32, 51, 93, 10, 91, 48, 32, 49, 32, 50, 32, 51, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 32, 48, 93, 10, 91, 48, 32, 49, 32, 50, 32, 51, 32, 48, 32, 57, 32, 57, 32, 57, 32, 57, 32, 57, 93, 10, 49, 48, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 115u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+static void print_u8(const uint8_t *values, size_t len) { printf("["); for (size_t i = 0; i < len; i++) printf("%s%u", i ? " " : "", values[i]); printf("]\n"); }
+int main(void) { uint8_t array[10] = {0}; print_u8(array, 10); uint8_t values[] = {1, 2, 3}; memcpy(array + 1, values, sizeof values); print_u8(array, 10); print_u8(array + 2, 8); print_u8(array + 2, 2); print_u8(array, 10); for (int i = 5; i < 10; i++) array[i] = 9; print_u8(array, 10); printf("10\n"); return 0; }

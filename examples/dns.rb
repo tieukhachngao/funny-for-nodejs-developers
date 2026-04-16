@@ -1,5 +1,3 @@
-# Generated Ruby example for examples/dns.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([].pack('C*'))
-STDERR.write([].pack('C*'))
+require 'resolv'
+resolver = Resolv::DNS.new
+resolver.getresources('google.com', Resolv::DNS::Resource::IN::NS).each { |r| puts r.name }

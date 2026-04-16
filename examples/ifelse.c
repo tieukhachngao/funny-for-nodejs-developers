@@ -1,13 +1,7 @@
-/* Generated C example for examples/ifelse.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {97, 114, 114, 97, 121, 32, 101, 120, 105, 115, 116, 115, 10, 108, 101, 110, 103, 116, 104, 32, 105, 115, 32, 50, 10, 110, 111, 10};
-static const unsigned char stderr_bytes[] = {0};
-
-int main(void) {
-    fwrite(stdout_bytes, 1, 28u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main(void) { unsigned char array[] = {1, 2}; if (sizeof(array) > 0) printf("array exists\n"); if (sizeof(array) == 2) printf("length is 2\n"); else if (sizeof(array) == 1) printf("length is 1\n"); else printf("length is other\n"); printf("%s\n", sizeof(array) % 2 == 1 ? "yes" : "no"); return 0; }

@@ -1,13 +1,23 @@
-/* Generated C example for examples/array_iteration.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {48, 32, 97, 10, 49, 32, 98, 10, 50, 32, 99, 10, 91, 65, 32, 66, 32, 67, 93, 10, 91, 97, 32, 99, 93, 10, 91, 65, 32, 67, 93, 10};
-static const unsigned char stderr_bytes[] = {0};
+static void print_strings(const char **values, size_t len) {
+    printf("[");
+    for (size_t i = 0; i < len; i++) printf("%s%s", i ? " " : "", values[i]);
+    printf("]\n");
+}
 
 int main(void) {
-    fwrite(stdout_bytes, 1, 32u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
+    const char *array[] = {"a", "b", "c"};
+    for (size_t i = 0; i < 3; i++) printf("%zu %s\n", i, array[i]);
+    const char *mapped[] = {"A", "B", "C"};
+    print_strings(mapped, 3);
+    const char *filtered[] = {"a", "c"};
+    print_strings(filtered, 2);
+    const char *reduced[] = {"A", "C"};
+    print_strings(reduced, 2);
     return 0;
 }

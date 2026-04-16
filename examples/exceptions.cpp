@@ -1,13 +1,20 @@
-// Generated C++ example for examples/exceptions.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {99, 97, 117, 103, 104, 116, 32, 101, 120, 99, 101, 112, 116, 105, 111, 110, 58, 32, 109, 121, 32, 101, 120, 99, 101, 112, 116, 105, 111, 110};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 30u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+static void foo() { throw std::runtime_error("my exception"); }
+int main() { try { foo(); } catch (const std::exception& e) { std::cout << "caught exception: " << e.what(); } }

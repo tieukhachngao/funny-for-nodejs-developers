@@ -1,5 +1,5 @@
-# Generated Ruby example for examples/variables.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([].pack('C*'))
-STDERR.write([].pack('C*'))
+foo = 'foo'
+bar = 'foo'
+baz = 'bar'
+QUX = 'qux'
+[foo, bar, baz, QUX].each { |v| v }

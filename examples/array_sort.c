@@ -1,13 +1,28 @@
-/* Generated C example for examples/array_sort.go.
-   It writes the same stdout/stderr bytes used by CI's Go baseline for this example. */
-
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-static const unsigned char stdout_bytes[] = {91, 48, 32, 49, 32, 50, 32, 51, 32, 52, 32, 53, 32, 57, 93, 10, 91, 57, 32, 53, 32, 52, 32, 51, 32, 50, 32, 49, 32, 48, 93, 10, 91, 97, 32, 98, 32, 99, 32, 100, 32, 121, 32, 122, 93, 10, 91, 122, 32, 121, 32, 100, 32, 99, 32, 98, 32, 97, 93, 10, 91, 123, 89, 105, 32, 77, 32, 50, 125, 32, 123, 74, 115, 111, 110, 32, 67, 32, 51, 125, 32, 123, 76, 105, 32, 76, 32, 56, 125, 32, 123, 90, 97, 99, 107, 32, 87, 32, 49, 53, 125, 93, 10, 91, 123, 90, 97, 99, 107, 32, 87, 32, 49, 53, 125, 32, 123, 76, 105, 32, 76, 32, 56, 125, 32, 123, 74, 115, 111, 110, 32, 67, 32, 51, 125, 32, 123, 89, 105, 32, 77, 32, 50, 125, 93, 10};
-static const unsigned char stderr_bytes[] = {0};
-
+typedef struct { const char *first; const char *last; int age; } Person;
+static int cmp_int_asc(const void *a, const void *b) { return (*(const int *)a > *(const int *)b) - (*(const int *)a < *(const int *)b); }
+static int cmp_int_desc(const void *a, const void *b) { return -cmp_int_asc(a, b); }
+static int cmp_str_asc(const void *a, const void *b) { return strcmp(*(char * const *)a, *(char * const *)b); }
+static int cmp_str_desc(const void *a, const void *b) { return -cmp_str_asc(a, b); }
+static int cmp_person_asc(const void *a, const void *b) { const Person *pa = a, *pb = b; return (pa->age > pb->age) - (pa->age < pb->age); }
+static int cmp_person_desc(const void *a, const void *b) { return -cmp_person_asc(a, b); }
+static void print_ints(int *values, size_t len) { printf("["); for (size_t i = 0; i < len; i++) printf("%s%d", i ? " " : "", values[i]); printf("]\n"); }
+static void print_strings(char **values, size_t len) { printf("["); for (size_t i = 0; i < len; i++) printf("%s%s", i ? " " : "", values[i]); printf("]\n"); }
+static void print_people(Person *values, size_t len) { printf("["); for (size_t i = 0; i < len; i++) printf("%s{%s %s %d}", i ? " " : "", values[i].first, values[i].last, values[i].age); printf("]\n"); }
 int main(void) {
-    fwrite(stdout_bytes, 1, 146u, stdout);
-    fwrite(stderr_bytes, 1, 0u, stderr);
+    int ints[] = {1, 3, 5, 9, 4, 2, 0};
+    qsort(ints, 7, sizeof(ints[0]), cmp_int_asc); print_ints(ints, 7);
+    qsort(ints, 7, sizeof(ints[0]), cmp_int_desc); print_ints(ints, 7);
+    char *strings[] = {"a", "d", "z", "b", "c", "y"};
+    qsort(strings, 6, sizeof(strings[0]), cmp_str_asc); print_strings(strings, 6);
+    qsort(strings, 6, sizeof(strings[0]), cmp_str_desc); print_strings(strings, 6);
+    Person people[] = {{"Li", "L", 8}, {"Json", "C", 3}, {"Zack", "W", 15}, {"Yi", "M", 2}};
+    qsort(people, 4, sizeof(people[0]), cmp_person_asc); print_people(people, 4);
+    qsort(people, 4, sizeof(people[0]), cmp_person_desc); print_people(people, 4);
     return 0;
 }

@@ -1,13 +1,20 @@
-// Generated C++ example for examples/promises.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 102, 111, 111, 10, 91, 114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 65, 32, 114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 66, 32, 114, 101, 115, 111, 108, 118, 101, 100, 58, 32, 67, 93, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 52u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+static std::future<std::string> async_method(const std::string& value) { return std::async(std::launch::async, [value] { std::this_thread::sleep_for(std::chrono::seconds(1)); return "resolved: " + value; }); }
+int main() { std::cout << async_method("foo").get() << '\n'; auto a = async_method("A"); auto b = async_method("B"); auto c = async_method("C"); std::cout << '[' << a.get() << ' ' << b.get() << ' ' << c.get() << "]\n"; }

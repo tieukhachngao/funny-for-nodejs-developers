@@ -1,5 +1,8 @@
-# Generated Ruby example for examples/udp_server.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([].pack('C*'))
-STDERR.write([].pack('C*'))
+require 'socket'
+socket = UDPSocket.new
+socket.bind('0.0.0.0', 3000)
+puts "server listening #{socket.addr.inspect}"
+loop do
+  data, remote = socket.recvfrom(20)
+  puts "received: #{data.strip} from #{remote.inspect}"
+end

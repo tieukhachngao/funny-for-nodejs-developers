@@ -1,5 +1,26 @@
-# Generated Ruby example for examples/array_sort.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+Person = Struct.new(:name, :last, :age) do
+  def to_s
+    "{#{name} #{last} #{age}}"
+  end
+end
 
-STDOUT.write([91, 48, 32, 49, 32, 50, 32, 51, 32, 52, 32, 53, 32, 57, 93, 10, 91, 57, 32, 53, 32, 52, 32, 51, 32, 50, 32, 49, 32, 48, 93, 10, 91, 97, 32, 98, 32, 99, 32, 100, 32, 121, 32, 122, 93, 10, 91, 122, 32, 121, 32, 100, 32, 99, 32, 98, 32, 97, 93, 10, 91, 123, 89, 105, 32, 77, 32, 50, 125, 32, 123, 74, 115, 111, 110, 32, 67, 32, 51, 125, 32, 123, 76, 105, 32, 76, 32, 56, 125, 32, 123, 90, 97, 99, 107, 32, 87, 32, 49, 53, 125, 93, 10, 91, 123, 90, 97, 99, 107, 32, 87, 32, 49, 53, 125, 32, 123, 76, 105, 32, 76, 32, 56, 125, 32, 123, 74, 115, 111, 110, 32, 67, 32, 51, 125, 32, 123, 89, 105, 32, 77, 32, 50, 125, 93, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+def fmt(values)
+  "[#{values.join(' ')}]"
+end
+
+ints = [1, 3, 5, 9, 4, 2, 0]
+puts fmt(ints.sort)
+puts fmt(ints.sort.reverse)
+
+strings = %w[a d z b c y]
+puts fmt(strings.sort)
+puts fmt(strings.sort.reverse)
+
+people = [
+  Person.new('Li', 'L', 8),
+  Person.new('Json', 'C', 3),
+  Person.new('Zack', 'W', 15),
+  Person.new('Yi', 'M', 2)
+]
+puts fmt(people.sort_by(&:age))
+puts fmt(people.sort_by(&:age).reverse)

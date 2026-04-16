@@ -1,5 +1,4 @@
-# Generated Ruby example for examples/http_server.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([].pack('C*'))
-STDERR.write([].pack('C*'))
+require 'webrick'
+server = WEBrick::HTTPServer.new(Port: 8080)
+server.mount_proc('/') { |_req, res| res.status = 200; res.body = 'hello world' }
+server.start

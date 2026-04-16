@@ -1,13 +1,19 @@
-// Generated C++ example for examples/switch.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {66, 10, 66, 32, 45, 32, 102, 97, 108, 108, 105, 110, 103, 32, 116, 104, 114, 111, 117, 103, 104, 10, 67, 32, 45, 32, 102, 97, 108, 108, 105, 110, 103, 32, 116, 104, 114, 111, 117, 103, 104, 10, 115, 101, 99, 111, 110, 100, 32, 100, 101, 102, 97, 117, 108, 116, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 57u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main() { char value = 'b'; switch (value) { case 'a': std::cout << "A\n"; break; case 'b': std::cout << "B\n"; break; case 'c': std::cout << "C\n"; break; default: std::cout << "first default\n"; } switch (value) { case 'a': std::cout << "A - falling through\n"; [[fallthrough]]; case 'b': std::cout << "B - falling through\n"; [[fallthrough]]; case 'c': std::cout << "C - falling through\n"; [[fallthrough]]; default: std::cout << "second default\n"; } }

@@ -1,13 +1,19 @@
-// Generated C++ example for examples/regex.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {113, 117, 120, 98, 97, 114, 10, 116, 114, 117, 101, 10, 91, 49, 49, 49, 32, 50, 50, 50, 32, 51, 51, 51, 93, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 26u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main() { std::string input = "foobar"; std::cout << std::regex_replace(input, std::regex("foo(.*)", std::regex_constants::icase), "qux$1") << '\n'; std::cout << (std::regex_search(input, std::regex("o{2}", std::regex_constants::icase)) ? "true" : "false") << '\n'; input = "111-222-333"; std::regex re("[0-9]+"); std::cout << "["; bool first = true; for (std::sregex_iterator it(input.begin(), input.end(), re), end; it != end; ++it) { std::cout << (first ? "" : " ") << it->str(); first = false; } std::cout << "]\n"; }

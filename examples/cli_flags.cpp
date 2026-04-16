@@ -1,13 +1,19 @@
-// Generated C++ example for examples/cli_flags.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {102, 111, 111, 58, 32, 98, 97, 114, 10, 113, 117, 120, 58, 32, 116, 114, 117, 101, 10};
-static constexpr unsigned char stderr_bytes[] = {0};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 19u, stdout);
-    std::fwrite(stderr_bytes, 1, 0u, stderr);
-    return 0;
-}
+int main(int argc, char **argv) { const char *foo = "default value"; bool qux = false; for (int i = 1; i < argc; i++) { if (strcmp(argv[i], "--foo") == 0 && i + 1 < argc) foo = argv[++i]; else if (strcmp(argv[i], "--qux") == 0) qux = true; } printf("foo: %s\n", foo); printf("qux: %s\n", qux ? "true" : "false"); return 0; }

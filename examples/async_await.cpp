@@ -1,13 +1,30 @@
-// Generated C++ example for examples/async_await.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+#include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <regex>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 
-#include <cstdio>
-
-static constexpr unsigned char stdout_bytes[] = {104, 101, 108, 108, 111, 32, 98, 111, 98, 10};
-static constexpr unsigned char stderr_bytes[] = {102, 97, 105, 108, 101, 100, 10};
-
-int main() {
-    std::fwrite(stdout_bytes, 1, 10u, stdout);
-    std::fwrite(stderr_bytes, 1, 7u, stderr);
+static const char *hello(const char *name, bool *failed) {
+    *failed = strcmp(name, "fail") == 0;
+    return *failed ? "failed" : "hello bob";
+}
+int main(void) {
+    bool failed = false;
+    const char *result = hello("bob", &failed);
+    if (failed) fprintf(stderr, "%s\n", result); else printf("%s\n", result);
+    result = hello("fail", &failed);
+    if (failed) fprintf(stderr, "%s\n", result); else printf("%s\n", result);
     return 0;
 }

@@ -1,5 +1,5 @@
-# Generated Ruby example for examples/event_emitter.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 10, 104, 101, 108, 108, 111, 32, 111, 116, 104, 101, 114, 32, 119, 111, 114, 108, 100, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+listeners = Hash.new { |hash, key| hash[key] = [] }
+listeners['my-event'] << proc { |message| puts message }
+listeners['my-other-event'] << proc { |message| puts message }
+listeners['my-event'].each { |listener| listener.call('hello world') }
+listeners['my-other-event'].each { |listener| listener.call('hello other world') }

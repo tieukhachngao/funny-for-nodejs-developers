@@ -1,5 +1,13 @@
-# Generated Ruby example for examples/big_numbers.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
-STDOUT.write([55, 53, 10, 55, 53, 10, 55, 53, 10, 55, 53, 10, 55, 53, 10, 55, 53, 10, 52, 98, 10, 91, 55, 53, 93, 10, 102, 97, 108, 115, 101, 10, 102, 97, 108, 115, 101, 10, 116, 114, 117, 101, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+bn = 75
+puts bn.to_s
+puts '75'.to_i(10).to_s
+puts 0x4b.to_s
+puts '4b'.to_i(16).to_s
+puts [0x4b].pack('C*').unpack1('H*').to_i(16).to_s
+puts bn
+puts '4b'
+puts '[75]'
+bn2 = 100
+puts (bn == bn2)
+puts (bn > bn2)
+puts (bn < bn2)

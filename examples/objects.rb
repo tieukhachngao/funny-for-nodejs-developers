@@ -1,5 +1,15 @@
-# Generated Ruby example for examples/objects.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+class Obj
+  attr_reader :some_properties
 
-STDOUT.write([98, 97, 114, 10, 98, 97, 114, 10].pack('C*'))
-STDERR.write([].pack('C*'))
+  def initialize
+    @some_properties = { 'foo' => 'bar' }
+  end
+
+  def some_method(prop)
+    @some_properties[prop]
+  end
+end
+
+obj = Obj.new
+puts obj.some_properties['foo']
+puts obj.some_method('foo')

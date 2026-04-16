@@ -1,5 +1,5 @@
-# Generated Ruby example for examples/example_test.go.
-# It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+def sum(a, b)
+  a + b
+end
 
-STDOUT.write([].pack('C*'))
-STDERR.write([].pack('C*'))
+[[1, 1, 2], [2, 3, 5], [5, 5, 10]].each { |a, b, expected| raise unless sum(a, b) == expected }
