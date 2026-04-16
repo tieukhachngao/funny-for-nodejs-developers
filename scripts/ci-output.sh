@@ -49,6 +49,7 @@ run_example() {
       build_cpp_example "$name" "$tmpdir/$name/$lang.bin"
       "$tmpdir/$name/$lang.bin" foo bar >"$stdout_file" 2>"$stderr_file"
       ;;
+    cli_args:rb) ruby "$file" foo bar >"$stdout_file" 2>"$stderr_file" ;;
     cli_args:sh) bash "$file" foo bar >"$stdout_file" 2>"$stderr_file" ;;
     cli_args:ps1) pwsh -NoLogo -NoProfile -File "$file" foo bar >"$stdout_file" 2>"$stderr_file" ;;
 
@@ -62,6 +63,7 @@ run_example() {
       build_cpp_example "$name" "$tmpdir/$name/$lang.bin"
       "$tmpdir/$name/$lang.bin" --foo bar --qux >"$stdout_file" 2>"$stderr_file"
       ;;
+    cli_flags:rb) ruby "$file" --foo bar --qux >"$stdout_file" 2>"$stderr_file" ;;
     cli_flags:sh) bash "$file" --foo bar --qux >"$stdout_file" 2>"$stderr_file" ;;
     cli_flags:ps1) pwsh -NoLogo -NoProfile -File "$file" -foo bar -qux >"$stdout_file" 2>"$stderr_file" ;;
 
@@ -82,6 +84,7 @@ run_example() {
           build_cpp_example "$name" "$tmpdir/$name/$lang.bin"
           "$tmpdir/$name/$lang.bin" >"$stdout_file" 2>"$stderr_file"
           ;;
+        rb) ruby "$file" >"$stdout_file" 2>"$stderr_file" ;;
         sh) bash "$file" >"$stdout_file" 2>"$stderr_file" ;;
         ps1) pwsh -NoLogo -NoProfile -File "$file" >"$stdout_file" 2>"$stderr_file" ;;
       esac
@@ -98,6 +101,7 @@ run_example() {
       build_cpp_example "$name" "$tmpdir/$name/$lang.bin"
       "$tmpdir/$name/$lang.bin" >"$stdout_file" 2>"$stderr_file"
       ;;
+    *:rb) ruby "$file" >"$stdout_file" 2>"$stderr_file" ;;
     *:sh) bash "$file" >"$stdout_file" 2>"$stderr_file" ;;
     *:ps1) pwsh -NoLogo -NoProfile -File "$file" >"$stdout_file" 2>"$stderr_file" ;;
   esac
@@ -175,7 +179,7 @@ for name in "${examples[@]}"; do
 
   run_example "$name" go "$tmpdir/$name/go.out" "$tmpdir/$name/go.err"
 
-  for lang in js c cpp sh ps1; do
+  for lang in js c cpp rb sh ps1; do
     run_example "$name" "$lang" "$tmpdir/$name/$lang.out" "$tmpdir/$name/$lang.err"
     compare_file "$name" "$lang" stdout "$tmpdir/$name/go.out" "$tmpdir/$name/$lang.out"
     compare_file "$name" "$lang" stderr "$tmpdir/$name/go.err" "$tmpdir/$name/$lang.err"
