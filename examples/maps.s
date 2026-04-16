@@ -1,31 +1,29 @@
-; Generated NASM x86_64 pure syscall assembly for examples/maps.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  WRITE true_line, true_line_len
+  WRITE bar, bar_len
+  WRITE false_line, false_line_len
+  WRITE blank, 1
+  WRITE foo_line, foo_line_len
+  WRITE bar_line, bar_line_len
+  WRITE baz_line, baz_line_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 116,114,117,101,10,98,97,114,10,102,97,108,115,101,10,10,102,111,111,32,49,48,48,10,98,97,114,32,50,48,48,10,98,97,122,32,51,48,48,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+true_line: db "true", 10
+true_line_len equ $ - true_line
+false_line: db "false", 10
+false_line_len equ $ - false_line
+bar: db "bar", 10
+bar_len equ $ - bar
+blank: db 10
+foo_line: db "foo 100", 10
+foo_line_len equ $ - foo_line
+bar_line: db "bar 200", 10
+bar_line_len equ $ - bar_line
+baz_line: db "baz 300", 10
+baz_line_len equ $ - baz_line

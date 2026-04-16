@@ -1,31 +1,21 @@
-; Generated NASM x86_64 pure syscall assembly for examples/interpolation.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  WRITE name, name_len
+  WRITE text, text_len
+  WRITE age, age_len
+  WRITE suffix, suffix_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 98,111,98,32,105,115,32,50,49,32,121,101,97,114,115,32,111,108,100,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+name: db "bob"
+name_len equ $ - name
+text: db " is "
+text_len equ $ - text
+age: db "21"
+age_len equ $ - age
+suffix: db " years old", 10
+suffix_len equ $ - suffix

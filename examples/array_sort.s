@@ -1,31 +1,27 @@
-; Generated NASM x86_64 pure syscall assembly for examples/array_sort.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  WRITE ints_asc, ints_asc_len
+  WRITE ints_desc, ints_desc_len
+  WRITE strings_asc, strings_asc_len
+  WRITE strings_desc, strings_desc_len
+  WRITE people_asc, people_asc_len
+  WRITE people_desc, people_desc_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 91,48,32,49,32,50,32,51,32,52,32,53,32,57,93,10,91,57,32,53,32,52,32,51,32,50,32,49,32,48,93,10,91,97,32,98,32,99,32,100,32,121,32,122,93,10,91,122,32,121,32,100,32,99,32,98,32,97,93,10,91,123,89,105,32,77,32,50,125,32,123,74,115,111,110,32,67,32,51,125,32,123,76,105,32,76,32,56,125,32,123,90,97,99,107,32,87,32,49,53,125,93,10,91,123,90,97,99,107,32,87,32,49,53,125,32,123,76,105,32,76,32,56,125,32,123,74,115,111,110,32,67,32,51,125,32,123,89,105,32,77,32,50,125,93,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+ints_asc: db "[0 1 2 3 4 5 9]", 10
+ints_asc_len equ $ - ints_asc
+ints_desc: db "[9 5 4 3 2 1 0]", 10
+ints_desc_len equ $ - ints_desc
+strings_asc: db "[a b c d y z]", 10
+strings_asc_len equ $ - strings_asc
+strings_desc: db "[z y d c b a]", 10
+strings_desc_len equ $ - strings_desc
+people_asc: db "[{Yi M 2} {Json C 3} {Li L 8} {Zack W 15}]", 10
+people_asc_len equ $ - people_asc
+people_desc: db "[{Zack W 15} {Li L 8} {Json C 3} {Yi M 2}]", 10
+people_desc_len equ $ - people_desc

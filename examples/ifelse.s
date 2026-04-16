@@ -1,31 +1,75 @@
-; Generated NASM x86_64 pure syscall assembly for examples/ifelse.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-
 section .text
   global _start
 
-_start:
+write:
   mov rax, 0x2000004
   mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
   syscall
+  ret
 
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
+_start:
+  mov r12, 2
+  cmp r12, 0
+  je check_len
+  lea rsi, [rel exists]
+  mov rdx, exists_len
+  call write
 
+check_len:
+  cmp r12, 2
+  je len_two
+  cmp r12, 1
+  je len_one
+  lea rsi, [rel len_other]
+  mov rdx, len_other_len
+  call write
+  jmp ternary
+
+len_two:
+  lea rsi, [rel len_2]
+  mov rdx, len_2_len
+  call write
+  jmp ternary
+
+len_one:
+  lea rsi, [rel len_1]
+  mov rdx, len_1_len
+  call write
+
+ternary:
+  test r12, 1
+  jnz odd
+  lea rsi, [rel no]
+  mov rdx, no_len
+  call write
+  jmp exit
+
+odd:
+  lea rsi, [rel yes]
+  mov rdx, yes_len
+  call write
+
+exit:
   mov rax, 0x2000001
   xor rdi, rdi
   syscall
 
 section .data
-stdout_bytes:
-  db 97,114,114,97,121,32,101,120,105,115,116,115,10,108,101,110,103,116,104,32,105,115,32,50,10,110,111,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+exists:
+  db "array exists", 10
+exists_len equ $ - exists
+len_2:
+  db "length is 2", 10
+len_2_len equ $ - len_2
+len_1:
+  db "length is 1", 10
+len_1_len equ $ - len_1
+len_other:
+  db "length is other", 10
+len_other_len equ $ - len_other
+yes:
+  db "yes", 10
+yes_len equ $ - yes
+no:
+  db "no", 10
+no_len equ $ - no

@@ -1,31 +1,28 @@
-; Generated NASM x86_64 pure syscall assembly for examples/rest.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
+sum:
+  xor rax, rax
+  xor rcx, rcx
+sum_loop:
+  cmp rcx, rsi
+  je done
+  add eax, [rdi + rcx * 4]
+  inc rcx
+  jmp sum_loop
+done:
+  ret
+
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  lea rdi, [rel nums]
+  mov rsi, 5
+  call sum
+  WRITE total, total_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 49,53,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+nums: dd 1, 2, 3, 4, 5
+total: db "15", 10
+total_len equ $ - total

@@ -1,7 +1,5 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "c_runtime.h"
 
-int main(void) { /* module_export: runtime/library example in C. */ return 0; }
+void greet(const char *name) { c_greet(name); }
+
+int main(void) { return 0; }

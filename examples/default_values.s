@@ -1,31 +1,30 @@
-; Generated NASM x86_64 pure syscall assembly for examples/default_values.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
+greet_default:
+  WRITE hello, hello_len
+  WRITE stranger, stranger_len
+  WRITE newline, 1
+  ret
+
+greet_name:
+  WRITE hello, hello_len
+  WRITE bob, bob_len
+  WRITE newline, 1
+  ret
+
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  call greet_default
+  call greet_name
+  EXIT
 
 section .data
-stdout_bytes:
-  db 104,101,108,108,111,32,115,116,114,97,110,103,101,114,10,104,101,108,108,111,32,98,111,98,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+hello: db "hello "
+hello_len equ $ - hello
+stranger: db "stranger"
+stranger_len equ $ - stranger
+bob: db "bob"
+bob_len equ $ - bob
+newline: db 10

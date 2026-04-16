@@ -1,31 +1,25 @@
-; Generated NASM x86_64 pure syscall assembly for examples/interval.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  xor r12, r12
+loop_interval:
+  cmp r12, 4
+  je done
+  WRITE called, called_len
+  mov byte [rel digit], '0'
+  add byte [rel digit], r12b
+  WRITE digit, 1
+  WRITE newline, 1
+  inc r12
+  jmp loop_interval
+done:
+  EXIT
 
 section .data
-stdout_bytes:
-  db 0
-stdout_len equ 0
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+called: db "called "
+called_len equ $ - called
+digit: db "0"
+newline: db 10

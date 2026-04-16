@@ -1,7 +1,3 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "c_runtime.h"
 
-int main(void) { /* url_parse: runtime/library example in C. */ return 0; }
+int main(void) { c_url_parse_example(); return 0; }

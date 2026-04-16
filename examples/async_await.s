@@ -1,31 +1,29 @@
-; Generated NASM x86_64 pure syscall assembly for examples/async_await.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
+hello:
+  lea rax, [rel fail_name]
+  cmp rdi, rax
+  je fail
+  WRITE hello_bob, hello_bob_len
+  ret
+fail:
+  WRITE_ERR failed, failed_len
+  ret
+
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  lea rdi, [rel bob_name]
+  call hello
+  lea rdi, [rel fail_name]
+  call hello
+  EXIT
 
 section .data
-stdout_bytes:
-  db 104,101,108,108,111,32,98,111,98,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 102,97,105,108,101,100,10
-stderr_len equ $ - stderr_bytes
+bob_name: db "bob", 0
+fail_name: db "fail", 0
+hello_bob: db "hello bob", 10
+hello_bob_len equ $ - hello_bob
+failed: db "failed", 10
+failed_len equ $ - failed

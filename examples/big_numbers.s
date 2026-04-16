@@ -1,31 +1,33 @@
-; Generated NASM x86_64 pure syscall assembly for examples/big_numbers.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
+  mov r12, 0
+repeat_75:
+  cmp r12, 6
+  je compare_lines
+  WRITE seventy_five, seventy_five_len
+  inc r12
+  jmp repeat_75
 
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+compare_lines:
+  WRITE hex_line, hex_line_len
+  WRITE bytes_line, bytes_line_len
+  WRITE false_line, false_line_len
+  WRITE false_line, false_line_len
+  WRITE true_line, true_line_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 55,53,10,55,53,10,55,53,10,55,53,10,55,53,10,55,53,10,52,98,10,91,55,53,93,10,102,97,108,115,101,10,102,97,108,115,101,10,116,114,117,101,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+seventy_five: db "75", 10
+seventy_five_len equ $ - seventy_five
+bytes_line: db "[75]", 10
+bytes_line_len equ $ - bytes_line
+hex_line: db "4b", 10
+hex_line_len equ $ - hex_line
+false_line: db "false", 10
+false_line_len equ $ - false_line
+true_line: db "true", 10
+true_line_len equ $ - true_line

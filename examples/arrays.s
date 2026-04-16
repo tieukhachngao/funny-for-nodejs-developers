@@ -1,31 +1,24 @@
-; Generated NASM x86_64 pure syscall assembly for examples/arrays.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  WRITE array, array_len
+  WRITE clone, clone_len
+  WRITE sub, sub_len
+  WRITE concat, concat_len
+  WRITE prepend, prepend_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 91,49,32,50,32,51,32,52,32,53,93,10,91,49,32,50,32,51,32,52,32,53,93,10,91,51,32,52,93,10,91,49,32,50,32,51,32,52,32,53,32,54,32,55,93,10,91,45,50,32,45,49,32,48,32,49,32,50,32,51,32,52,32,53,32,54,32,55,93,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+array: db "[1 2 3 4 5]", 10
+array_len equ $ - array
+clone: db "[1 2 3 4 5]", 10
+clone_len equ $ - clone
+sub: db "[3 4]", 10
+sub_len equ $ - sub
+concat: db "[1 2 3 4 5 6 7]", 10
+concat_len equ $ - concat
+prepend: db "[-2 -1 0 1 2 3 4 5 6 7]", 10
+prepend_len equ $ - prepend

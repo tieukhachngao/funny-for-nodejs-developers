@@ -1,31 +1,29 @@
-; Generated NASM x86_64 pure syscall assembly for examples/event_emitter.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
-_start:
+emit:
+  mov rsi, rdi
+  mov rdx, rbx
   mov rax, 0x2000004
   mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
   syscall
+  WRITE newline, 1
+  ret
 
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+_start:
+  lea rdi, [rel msg1]
+  mov rbx, msg1_len
+  call emit
+  lea rdi, [rel msg2]
+  mov rbx, msg2_len
+  call emit
+  EXIT
 
 section .data
-stdout_bytes:
-  db 104,101,108,108,111,32,119,111,114,108,100,10,104,101,108,108,111,32,111,116,104,101,114,32,119,111,114,108,100,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+msg1: db "hello world"
+msg1_len equ $ - msg1
+msg2: db "hello other world"
+msg2_len equ $ - msg2
+newline: db 10

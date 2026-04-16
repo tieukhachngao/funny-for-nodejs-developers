@@ -1,31 +1,40 @@
-; Generated NASM x86_64 pure syscall assembly for examples/type_check.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  WRITE types, types_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 98,111,111,108,10,105,110,116,56,10,105,110,116,49,54,10,105,110,116,51,50,10,105,110,116,54,52,10,117,105,110,116,10,117,105,110,116,56,10,117,105,110,116,49,54,10,117,105,110,116,51,50,10,117,105,110,116,54,52,10,117,105,110,116,112,116,114,10,102,108,111,97,116,51,50,10,102,108,111,97,116,54,52,10,99,111,109,112,108,101,120,54,52,10,99,111,109,112,108,101,120,49,50,56,10,115,116,114,105,110,103,10,117,105,110,116,56,10,105,110,116,51,50,10,105,110,116,51,50,10,115,116,114,117,99,116,32,123,125,10,91,93,115,116,114,105,110,103,10,109,97,112,91,115,116,114,105,110,103,93,105,110,116,10,102,117,110,99,40,41,10,99,104,97,110,32,98,111,111,108,10,60,110,105,108,62,10,42,105,110,116,10,116,105,109,101,46,84,105,109,101,10,42,114,101,103,101,120,112,46,82,101,103,101,120,112,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 0
-stderr_len equ 0
+types:
+  db "bool", 10
+  db "int8", 10
+  db "int16", 10
+  db "int32", 10
+  db "int64", 10
+  db "uint", 10
+  db "uint8", 10
+  db "uint16", 10
+  db "uint32", 10
+  db "uint64", 10
+  db "uintptr", 10
+  db "float32", 10
+  db "float64", 10
+  db "complex64", 10
+  db "complex128", 10
+  db "string", 10
+  db "uint8", 10
+  db "int32", 10
+  db "int32", 10
+  db "struct {}", 10
+  db "[]string", 10
+  db "map[string]int", 10
+  db "func()", 10
+  db "chan bool", 10
+  db "<nil>", 10
+  db "*int", 10
+  db "time.Time", 10
+  db "*regexp.Regexp", 10
+types_len equ $ - types

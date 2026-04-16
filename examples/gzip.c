@@ -1,7 +1,3 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "c_runtime.h"
 
-int main(void) { const char *data = "hello world"; printf("compressed: true\n"); printf("%s\n", data); return 0; }
+int main(void) { c_gzip_example(); return 0; }

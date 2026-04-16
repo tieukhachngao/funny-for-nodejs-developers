@@ -1,7 +1,3 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "c_runtime.h"
 
-int main(void) { /* stdin: runtime/library example in C. */ return 0; }
+int main(void) { c_stdin_example(); return 0; }

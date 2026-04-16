@@ -1,31 +1,18 @@
-; Generated NASM x86_64 pure syscall assembly for examples/print.go.
-; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+%include "examples/asm_runtime_darwin.inc"
 
 section .text
   global _start
 
 _start:
-  mov rax, 0x2000004
-  mov rdi, 1
-  lea rsi, [rel stdout_bytes]
-  mov rdx, stdout_len
-  syscall
-
-  mov rax, 0x2000004
-  mov rdi, 2
-  lea rsi, [rel stderr_bytes]
-  mov rdx, stderr_len
-  syscall
-
-  mov rax, 0x2000001
-  xor rdi, rdi
-  syscall
+  WRITE out1, out1_len
+  WRITE out2, out2_len
+  WRITE_ERR err1, err1_len
+  EXIT
 
 section .data
-stdout_bytes:
-  db 112,114,105,110,116,32,116,111,32,115,116,100,111,117,116,10,102,111,114,109,97,116,32,101,120,97,109,112,108,101,32,49,10
-stdout_len equ $ - stdout_bytes
-
-stderr_bytes:
-  db 112,114,105,110,116,32,116,111,32,115,116,100,101,114,114
-stderr_len equ $ - stderr_bytes
+out1: db "print to stdout", 10
+out1_len equ $ - out1
+out2: db "format example 1", 10
+out2_len equ $ - out2
+err1: db "print to stderr"
+err1_len equ $ - err1
