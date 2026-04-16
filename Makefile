@@ -1,8 +1,8 @@
 SHELL := bash
 
-.PHONY: ci structure go node c shell batch powershell assembly output
+.PHONY: ci structure go node c cpp shell batch powershell assembly output
 
-ci: structure go node c shell batch powershell assembly output
+ci: structure go node c cpp shell batch powershell assembly output
 
 structure:
 	./scripts/ci-structure.sh
@@ -15,6 +15,9 @@ node:
 
 c:
 	./scripts/ci-c.sh
+
+cpp:
+	./scripts/ci-cpp.sh
 
 shell:
 	./scripts/ci-shell.sh

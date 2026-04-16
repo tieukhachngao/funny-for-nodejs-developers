@@ -10,6 +10,7 @@ trap 'rm -rf "$tmpdir"' EXIT
 find examples -maxdepth 1 -name '*.go' -exec basename {} .go \; | sort >"$tmpdir/go.txt"
 find examples -maxdepth 1 -name '*.js' -exec basename {} .js \; | sort >"$tmpdir/js.txt"
 find examples -maxdepth 1 -name '*.c' -exec basename {} .c \; | sort >"$tmpdir/c.txt"
+find examples -maxdepth 1 -name '*.cpp' -exec basename {} .cpp \; | sort >"$tmpdir/cpp.txt"
 find examples -maxdepth 1 -name '*.sh' -exec basename {} .sh \; | sort >"$tmpdir/sh.txt"
 find examples -maxdepth 1 -name '*.bat' -exec basename {} .bat \; | sort >"$tmpdir/bat.txt"
 find examples -maxdepth 1 -name '*.ps1' -exec basename {} .ps1 \; | sort >"$tmpdir/ps1.txt"
@@ -18,17 +19,18 @@ find examples -maxdepth 1 -name '*.s' -exec basename {} .s \; | sort >"$tmpdir/s
 go_count=$(wc -l <"$tmpdir/go.txt" | tr -d ' ')
 js_count=$(wc -l <"$tmpdir/js.txt" | tr -d ' ')
 c_count=$(wc -l <"$tmpdir/c.txt" | tr -d ' ')
+cpp_count=$(wc -l <"$tmpdir/cpp.txt" | tr -d ' ')
 sh_count=$(wc -l <"$tmpdir/sh.txt" | tr -d ' ')
 bat_count=$(wc -l <"$tmpdir/bat.txt" | tr -d ' ')
 ps1_count=$(wc -l <"$tmpdir/ps1.txt" | tr -d ' ')
 s_count=$(wc -l <"$tmpdir/s.txt" | tr -d ' ')
 
-if [[ $go_count != "$js_count" || $go_count != "$c_count" || $go_count != "$sh_count" || $go_count != "$bat_count" || $go_count != "$ps1_count" || $go_count != "$s_count" ]]; then
-  printf 'example count mismatch: go=%s js=%s c=%s sh=%s bat=%s ps1=%s s=%s\n' "$go_count" "$js_count" "$c_count" "$sh_count" "$bat_count" "$ps1_count" "$s_count" >&2
+if [[ $go_count != "$js_count" || $go_count != "$c_count" || $go_count != "$cpp_count" || $go_count != "$sh_count" || $go_count != "$bat_count" || $go_count != "$ps1_count" || $go_count != "$s_count" ]]; then
+  printf 'example count mismatch: go=%s js=%s c=%s cpp=%s sh=%s bat=%s ps1=%s s=%s\n' "$go_count" "$js_count" "$c_count" "$cpp_count" "$sh_count" "$bat_count" "$ps1_count" "$s_count" >&2
   exit 1
 fi
 
-for lang in js c sh bat ps1 s; do
+for lang in js c cpp sh bat ps1 s; do
   missing=$(comm -23 "$tmpdir/go.txt" "$tmpdir/$lang.txt")
   extra=$(comm -13 "$tmpdir/go.txt" "$tmpdir/$lang.txt")
 
@@ -75,6 +77,12 @@ if [[ ! -f examples/greeter_c/index.c ]]; then
   exit 1
 fi
 
+if [[ ! -f examples/greeter_cpp/index.cpp ]]; then
+  printf 'examples/greeter_cpp/index.cpp is required\n' >&2
+  find examples/greeter_cpp -maxdepth 1 -type f -print >&2
+  exit 1
+fi
+
 stale_paths="$tmpdir/stale-paths.txt"
 grep -En 'getter_shellscript/.*\.sh' README.md examples/getter_shellscript/README.md >"$stale_paths" || true
 if grep -v 'getter_shellscript/index\.sh' "$stale_paths" >/dev/null; then
@@ -101,4 +109,4 @@ if find examples -name '*.bash' | grep -q .; then
   exit 1
 fi
 
-printf 'structure ok: %s examples per language for go/js/c/sh/bat/ps1/s\n' "$go_count"
+printf 'structure ok: %s examples per language for go/js/c/cpp/sh/bat/ps1/s\n' "$go_count"
