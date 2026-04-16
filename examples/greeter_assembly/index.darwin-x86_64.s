@@ -1,45 +1,46 @@
-.section __TEXT,__text,regular,pure_instructions
-.globl _start
-.p2align 4, 0x90
+section .text
+  global _start
 
 _start:
-  cmpq $2, %rdi
+  cmp rdi, 2
   jl use_default_name
 
-  movq 8(%rsi), %r13
+  mov r13, [rsi + 8]
   jmp write_greeting
 
 use_default_name:
-  leaq default_name(%rip), %r13
+  lea r13, [rel default_name]
 
 write_greeting:
-  movq $0x2000004, %rax
-  movq $1, %rdi
-  leaq prefix(%rip), %rsi
-  movq $6, %rdx
+  mov rax, 0x2000004
+  mov rdi, 1
+  lea rsi, [rel prefix]
+  mov rdx, prefix_len
   syscall
 
-  xorl %ecx, %ecx
+  xor rcx, rcx
 
 name_len_loop:
-  cmpb $0, (%r13,%rcx)
+  cmp byte [r13 + rcx], 0
   je write_name
-  incq %rcx
+  inc rcx
   jmp name_len_loop
 
 write_name:
-  movq $0x2000004, %rax
-  movq $1, %rdi
-  movq %r13, %rsi
-  movq %rcx, %rdx
+  mov rax, 0x2000004
+  mov rdi, 1
+  mov rsi, r13
+  mov rdx, rcx
   syscall
 
-  movq $0x2000001, %rax
-  xorl %edi, %edi
+  mov rax, 0x2000001
+  xor rdi, rdi
   syscall
 
-.section __TEXT,__cstring,cstring_literals
+section .data
 prefix:
-  .asciz "hello "
+  db "hello "
+prefix_len equ $ - prefix
+
 default_name:
-  .asciz "bob"
+  db "bob", 0

@@ -19,8 +19,8 @@ case "$os/$arch" in
     ;;
 esac
 
-if ! command -v as >/dev/null 2>&1; then
-  printf 'as is required to assemble the assembly greeter\n' >&2
+if ! command -v nasm >/dev/null 2>&1; then
+  printf 'nasm is required to assemble the assembly greeter\n' >&2
   exit 1
 fi
 
@@ -37,13 +37,14 @@ binary_file="$tmpdir/greeter_assembly"
 
 case "$os/$arch" in
   darwin/x86_64)
-    as -arch x86_64 "$source_file" -o "$object_file"
+    nasm -f macho64 "$source_file" -o "$object_file"
     sdk_path=$(xcrun --show-sdk-path)
     macos_version=$(sw_vers -productVersion | awk -F. '{print $1 "." $2}')
-    ld -e _start -macos_version_min "$macos_version" -syslibroot "$sdk_path" -lSystem "$object_file" -o "$binary_file"
+    ld -e _start -macos_version_min "$macos_version" -syslibroot "$sdk_path" -lSystem "$object_file" -o "$binary_file" \
+      2> >(grep -v 'no platform load command found' >&2)
     ;;
   linux/x86_64)
-    as "$source_file" -o "$object_file"
+    nasm -f elf64 "$source_file" -o "$object_file"
     ld -e _start "$object_file" -o "$binary_file"
     ;;
 esac

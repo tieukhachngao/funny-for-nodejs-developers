@@ -6,20 +6,20 @@
   <br />
 </h3>
 
-# Golang for Node.js, Shell Script, Batch, PowerShell, and Assembly Developers
+# Golang for Node.js, Shell Script, Batch, PowerShell, and NASM Assembly Developers
 
-> Examples of [Golang](https://golang.org/) examples compared to [Node.js](https://nodejs.org/), Linux shell scripts, Windows Batch, PowerShell, and Assembly for learning
+> Examples of [Golang](https://golang.org/) examples compared to [Node.js](https://nodejs.org/), Linux shell scripts, Windows Batch, PowerShell, and NASM Assembly for learning
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tieukhachngao/funny-for-nodejs-developers/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
-This guide full of examples is intended for people learning Go that are coming from Node.js, Linux shell scripting, Windows Batch, PowerShell, or Assembly, although the vice versa can work too. This is not meant to be a complete guide and it is assumed that you've gone through the [Tour of Go](https://tour.golang.org/) tutorial. This guide is meant to be barely good enough to help you at a high level understand how to do *X* in *Y* and doing further learning on your own is of course required.
+This guide full of examples is intended for people learning Go that are coming from Node.js, Linux shell scripting, Windows Batch, PowerShell, or NASM Assembly, although the vice versa can work too. This is not meant to be a complete guide and it is assumed that you've gone through the [Tour of Go](https://tour.golang.org/) tutorial. This guide is meant to be barely good enough to help you at a high level understand how to do *X* in *Y* and doing further learning on your own is of course required.
 
 ## Attribution
 
 This project is built on top of the ideas, structure, and code from [miguelmota/golang-for-nodejs-developers](https://github.com/miguelmota/golang-for-nodejs-developers). The original project is licensed under the MIT License, and this repository keeps that license, preserves the original copyright notice, and clearly credits the upstream work.
 
-The goal of this repository is to inherit that learning resource honestly and extend it further for the community. The current version adds Linux Shell Script, Windows Batch, PowerShell, and Assembly examples, keeps the Node.js and Go comparison style, updates project paths for this fork, and adds CI checks so the examples stay consistent. Everything remains free to use, copy, modify, and share under the MIT License.
+The goal of this repository is to inherit that learning resource honestly and extend it further for the community. The current version adds Linux Shell Script, Windows Batch, PowerShell, and NASM Assembly examples, keeps the Node.js and Go comparison style, updates project paths for this fork, and adds CI checks so the examples stay consistent. Everything remains free to use, copy, modify, and share under the MIT License.
 
 ## Contents
 
@@ -164,13 +164,15 @@ The goal of this repository is to inherit that learning resource honestly and ex
 
 ## Examples
 
-All sample code is available in [examples/](examples/). Shell Script, Batch, PowerShell, and Assembly examples use the same basename as the matching Node.js and Go examples, for example `print.js`, `print.go`, `print.sh`, `print.bat`, `print.ps1`, and `print.s`.
+All sample code is available in [examples/](examples/). Shell Script, Batch, PowerShell, and NASM Assembly examples use the same basename as the matching Node.js and Go examples, for example `print.js`, `print.go`, `print.sh`, `print.bat`, `print.ps1`, and `print.s`.
+
+Assembly examples are written in NASM syntax and assembled by CI with `nasm` plus the platform linker.
 
 ### Language coverage
 
-Every top-level example has matching Go, Node.js, Shell Script, Batch, PowerShell, and Assembly files. The detailed guide below keeps the original comparison format, while this table is the full language index for the repository.
+Every top-level example has matching Go, Node.js, Shell Script, Batch, PowerShell, and NASM Assembly files. The detailed guide below keeps the original comparison format, while this table is the full language index for the repository.
 
-| Example | Go | Node.js | Shell Script | Batch | PowerShell | Assembly |
+| Example | Go | Node.js | Shell Script | Batch | PowerShell | NASM Assembly |
 | --- | --- | --- | --- | --- | --- | --- |
 | `array iteration` | [array_iteration.go](examples/array_iteration.go) | [array_iteration.js](examples/array_iteration.js) | [array_iteration.sh](examples/array_iteration.sh) | [array_iteration.bat](examples/array_iteration.bat) | [array_iteration.ps1](examples/array_iteration.ps1) | [array_iteration.s](examples/array_iteration.s) |
 | `array sort` | [array_sort.go](examples/array_sort.go) | [array_sort.js](examples/array_sort.js) | [array_sort.sh](examples/array_sort.sh) | [array_sort.bat](examples/array_sort.bat) | [array_sort.ps1](examples/array_sort.ps1) | [array_sort.s](examples/array_sort.s) |
@@ -248,7 +250,7 @@ The module export examples also use helper greeter modules. Each helper implemen
 | `getter_shellscript` | Shell Script | [examples/getter_shellscript/index.sh](examples/getter_shellscript/index.sh) |
 | `getter_batch` | Batch | [examples/getter_batch/index.bat](examples/getter_batch/index.bat) |
 | `getter_powershell` | PowerShell | [examples/getter_powershell/index.ps1](examples/getter_powershell/index.ps1) |
-| `greeter_assembly` | Assembly | [examples/greeter_assembly/build.sh](examples/greeter_assembly/build.sh) |
+| `greeter_assembly` | NASM Assembly | [examples/greeter_assembly/build.sh](examples/greeter_assembly/build.sh) |
 
 ### comments
 ---

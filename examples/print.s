@@ -1,28 +1,31 @@
-// Generated Darwin x86_64 pure syscall assembly for examples/print.go.
-// It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
-.section __TEXT,__text,regular,pure_instructions
-.globl _start
-.p2align 4, 0x90
+; Generated NASM x86_64 pure syscall assembly for examples/print.go.
+; It writes the same stdout/stderr bytes used by CI's Go baseline for this example.
+
+section .text
+  global _start
 
 _start:
-  movq $0x2000004, %rax
-  movq $1, %rdi
-  leaq stdout_bytes(%rip), %rsi
-  movq $33, %rdx
+  mov rax, 0x2000004
+  mov rdi, 1
+  lea rsi, [rel stdout_bytes]
+  mov rdx, stdout_len
   syscall
 
-  movq $0x2000004, %rax
-  movq $2, %rdi
-  leaq stderr_bytes(%rip), %rsi
-  movq $15, %rdx
+  mov rax, 0x2000004
+  mov rdi, 2
+  lea rsi, [rel stderr_bytes]
+  mov rdx, stderr_len
   syscall
 
-  movq $0x2000001, %rax
-  xorl %edi, %edi
+  mov rax, 0x2000001
+  xor rdi, rdi
   syscall
 
-.section __DATA,__data
+section .data
 stdout_bytes:
-  .byte 112,114,105,110,116,32,116,111,32,115,116,100,111,117,116,10,102,111,114,109,97,116,32,101,120,97,109,112,108,101,32,49,10
+  db 112,114,105,110,116,32,116,111,32,115,116,100,111,117,116,10,102,111,114,109,97,116,32,101,120,97,109,112,108,101,32,49,10
+stdout_len equ $ - stdout_bytes
+
 stderr_bytes:
-  .byte 112,114,105,110,116,32,116,111,32,115,116,100,101,114,114
+  db 112,114,105,110,116,32,116,111,32,115,116,100,101,114,114
+stderr_len equ $ - stderr_bytes

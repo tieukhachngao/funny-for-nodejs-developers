@@ -14,4 +14,4 @@ Output:
 hello bob
 ```
 
-This is pure assembly: it uses OS syscalls directly for `write` and `exit`, with no `printf` or C runtime calls. The build script currently supports `darwin/x86_64` and `linux/x86_64` hosts with `as` and `ld`.
+This is NASM assembly: it uses OS syscalls directly for `write` and `exit`, with no `printf` or C runtime calls. The build script currently supports `darwin/x86_64` and `linux/x86_64` hosts with `nasm` and `ld`.

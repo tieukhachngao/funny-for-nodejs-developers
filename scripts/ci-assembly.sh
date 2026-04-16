@@ -21,8 +21,8 @@ case "$os/$arch" in
     ;;
 esac
 
-if ! command -v as >/dev/null 2>&1 || ! command -v ld >/dev/null 2>&1 || ! command -v xcrun >/dev/null 2>&1; then
-  printf 'assembly checks skipped because as, ld, or xcrun is unavailable\n'
+if ! command -v nasm >/dev/null 2>&1 || ! command -v ld >/dev/null 2>&1 || ! command -v xcrun >/dev/null 2>&1; then
+  printf 'assembly checks skipped because nasm, ld, or xcrun is unavailable\n'
   exit 0
 fi
 
@@ -36,8 +36,9 @@ build_asm() {
   local output_file=$2
   local object_file="$output_file.o"
 
-  as -arch x86_64 "$source_file" -o "$object_file"
-  ld -e _start -macos_version_min "$macos_version" -syslibroot "$sdk_path" -lSystem "$object_file" -o "$output_file"
+  nasm -f macho64 "$source_file" -o "$object_file"
+  ld -e _start -macos_version_min "$macos_version" -syslibroot "$sdk_path" -lSystem "$object_file" -o "$output_file" \
+    2> >(grep -v 'no platform load command found' >&2)
 }
 
 run_go() {
