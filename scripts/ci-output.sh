@@ -7,6 +7,18 @@ cd "$root_dir"
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"; rm -f sqlite3.db' EXIT
 
+build_c_example() {
+  local name=$1
+  local output_file=$2
+
+  if ! command -v cc >/dev/null 2>&1; then
+    printf 'cc is required for output comparison of %s.c\n' "$name" >&2
+    exit 1
+  fi
+
+  cc -std=c11 -Wall -Wextra -Werror "examples/$name.c" -o "$output_file"
+}
+
 run_example() {
   local name=$1
   local lang=$2
@@ -17,11 +29,19 @@ run_example() {
   case "$name:$lang" in
     cli_args:go) go run "$file" foo bar >"$stdout_file" 2>"$stderr_file" ;;
     cli_args:js) node "$file" foo bar >"$stdout_file" 2>"$stderr_file" ;;
+    cli_args:c)
+      build_c_example "$name" "$tmpdir/$name/$lang.bin"
+      "$tmpdir/$name/$lang.bin" foo bar >"$stdout_file" 2>"$stderr_file"
+      ;;
     cli_args:sh) bash "$file" foo bar >"$stdout_file" 2>"$stderr_file" ;;
     cli_args:ps1) pwsh -NoLogo -NoProfile -File "$file" foo bar >"$stdout_file" 2>"$stderr_file" ;;
 
     cli_flags:go) go run "$file" -foo bar -qux >"$stdout_file" 2>"$stderr_file" ;;
     cli_flags:js) node "$file" --foo bar --qux >"$stdout_file" 2>"$stderr_file" ;;
+    cli_flags:c)
+      build_c_example "$name" "$tmpdir/$name/$lang.bin"
+      "$tmpdir/$name/$lang.bin" --foo bar --qux >"$stdout_file" 2>"$stderr_file"
+      ;;
     cli_flags:sh) bash "$file" --foo bar --qux >"$stdout_file" 2>"$stderr_file" ;;
     cli_flags:ps1) pwsh -NoLogo -NoProfile -File "$file" -foo bar -qux >"$stdout_file" 2>"$stderr_file" ;;
 
@@ -34,6 +54,10 @@ run_example() {
       case "$lang" in
         go) go run "$file" >"$stdout_file" 2>"$stderr_file" ;;
         js) node "$file" >"$stdout_file" 2>"$stderr_file" ;;
+        c)
+          build_c_example "$name" "$tmpdir/$name/$lang.bin"
+          "$tmpdir/$name/$lang.bin" >"$stdout_file" 2>"$stderr_file"
+          ;;
         sh) bash "$file" >"$stdout_file" 2>"$stderr_file" ;;
         ps1) pwsh -NoLogo -NoProfile -File "$file" >"$stdout_file" 2>"$stderr_file" ;;
       esac
@@ -42,6 +66,10 @@ run_example() {
 
     *:go) go run "$file" >"$stdout_file" 2>"$stderr_file" ;;
     *:js) node "$file" >"$stdout_file" 2>"$stderr_file" ;;
+    *:c)
+      build_c_example "$name" "$tmpdir/$name/$lang.bin"
+      "$tmpdir/$name/$lang.bin" >"$stdout_file" 2>"$stderr_file"
+      ;;
     *:sh) bash "$file" >"$stdout_file" 2>"$stderr_file" ;;
     *:ps1) pwsh -NoLogo -NoProfile -File "$file" >"$stdout_file" 2>"$stderr_file" ;;
   esac
@@ -119,7 +147,7 @@ for name in "${examples[@]}"; do
 
   run_example "$name" go "$tmpdir/$name/go.out" "$tmpdir/$name/go.err"
 
-  for lang in js sh ps1; do
+  for lang in js c sh ps1; do
     run_example "$name" "$lang" "$tmpdir/$name/$lang.out" "$tmpdir/$name/$lang.err"
     compare_file "$name" "$lang" stdout "$tmpdir/$name/go.out" "$tmpdir/$name/$lang.out"
     compare_file "$name" "$lang" stderr "$tmpdir/$name/go.err" "$tmpdir/$name/$lang.err"
